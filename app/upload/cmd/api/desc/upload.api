@@ -13,7 +13,7 @@ type (
 		FileName string `json:"file_name,optional"`
 		Ext      string `json:"ext,optional"`
 		Size     int64  `json:"size,optional"`
-		FileData []byte `json:"file_data,optional"`
+		FileData []string `json:"file_data,optional"`
 	}
 	UserUploadResp {
 		Url string `json:"url"`

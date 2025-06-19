@@ -3,6 +3,9 @@ package user
 import (
 	"net/http"
 
+	"github.com/go-playground/validator/v10"
+	"github.com/jialechen7/go-lottery/common/response"
+
 	"Luckify/app/usercenter/cmd/api/internal/logic/user"
 	"Luckify/app/usercenter/cmd/api/internal/svc"
 	"Luckify/app/usercenter/cmd/api/internal/types"
@@ -14,16 +17,18 @@ func DetailHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		var req types.UserInfoReq
 		if err := httpx.Parse(r, &req); err != nil {
-			httpx.ErrorCtx(r.Context(), w, err)
+			response.ParamErrorResult(r, w, err)
+			return
+		}
+
+		err := validator.New().StructCtx(r.Context(), req)
+		if err != nil {
+			response.ParamErrorResult(r, w, err)
 			return
 		}
 
 		l := user.NewDetailLogic(r.Context(), svcCtx)
 		resp, err := l.Detail(&req)
-		if err != nil {
-			httpx.ErrorCtx(r.Context(), w, err)
-		} else {
-			httpx.OkJsonCtx(r.Context(), w, resp)
-		}
+		response.HttpResult(r, w, resp, err)
 	}
 }

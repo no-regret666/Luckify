@@ -25,6 +25,7 @@ func NewUploadLogic(ctx context.Context, svcCtx *svc.ServiceContext) *UploadLogi
 }
 
 func (l *UploadLogic) Upload(req *types.UserUploadReq) (resp *types.UserUploadResp, err error) {
-	userId := utility
+	// todo: add your logic here and delete this line
+
 	return
 }
