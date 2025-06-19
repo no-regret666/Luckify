@@ -1,0 +1,16 @@
+package xerr
+
+// 成功返回
+const OK uint32 = 200
+
+/**(前3位代表业务，后3位代表具体功能)**/
+
+// 全局错误码
+const SERVER_COMMOM_ERROR uint32 = 100001
+const REQUEST_PARAM_ERROR uint32 = 100002
+const TOKEN_EXPIRE_ERROR uint32 = 100003 // token过期
+const TOKEN_GENERATE_ERROR uint32 = 100004
+const DB_ERROR uint32 = 100005
+const DB_UPDATE_AFFECTED_ZERO_ERROR uint32 = 100006
+
+// 用户模块

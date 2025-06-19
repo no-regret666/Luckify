@@ -6,8 +6,8 @@ package handler
 import (
 	"net/http"
 
-	upload "Luckify/app/usercenter/cmd/api/internal/handler/upload"
-	"Luckify/app/usercenter/cmd/api/internal/svc"
+	upload "Luckify/app/upload/cmd/api/internal/handler/upload"
+	"Luckify/app/upload/cmd/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/rest"
 )
