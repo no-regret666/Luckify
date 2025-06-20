@@ -5,6 +5,7 @@ import (
 	"Luckify/common/xerr"
 	"bytes"
 	"context"
+	"fmt"
 	"github.com/minio/minio-go/v7"
 	"github.com/pkg/errors"
 
@@ -43,7 +44,7 @@ func (l *UploadLogic) Upload(in *pb.FileUploadReq) (*pb.FileUploadResp, error) {
 			return nil, errors.Wrapf(model.ErrBucketNotFound, "Create bucket with oss client err: %+v,err: %v", in, err)
 		}
 	} else {
-		logx.Info("Successfully created %s\n", l.svcCtx.Config.OssConf.Bucket)
+		logx.Info(fmt.Sprintf("Successfully created %s\n", l.svcCtx.Config.OssConf.Bucket))
 	}
 
 	reader := bytes.NewReader(in.FileData)
