@@ -3,8 +3,8 @@ package user
 import (
 	"net/http"
 
+	"Luckify/common/response"
 	"github.com/go-playground/validator/v10"
-	"github.com/jialechen7/go-lottery/common/response"
 
 	"Luckify/app/usercenter/cmd/api/internal/logic/user"
 	"Luckify/app/usercenter/cmd/api/internal/svc"

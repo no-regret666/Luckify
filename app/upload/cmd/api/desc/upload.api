@@ -11,7 +11,7 @@ info (
 type (
 	UserUploadReq {
 		FileName string `json:"file_name,optional"`
-		Ext      string `json:"ext,optional"`
+		Ext      string `json:"ext,optional"` //文件扩展名
 		Size     int64  `json:"size,optional"`
 		FileData []string `json:"file_data,optional"`
 	}

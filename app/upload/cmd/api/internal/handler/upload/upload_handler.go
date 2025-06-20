@@ -3,8 +3,8 @@ package upload
 import (
 	"net/http"
 
+	"Luckify/common/response"
 	"github.com/go-playground/validator/v10"
-	"github.com/jialechen7/go-lottery/common/response"
 
 	"Luckify/app/upload/cmd/api/internal/logic/upload"
 	"Luckify/app/upload/cmd/api/internal/svc"

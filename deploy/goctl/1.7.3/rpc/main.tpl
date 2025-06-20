@@ -4,7 +4,7 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/jialechen7/go-lottery/common/interceptor/rpcserver"
+	"github.com/no-regret666/Luckify/common/interceptor/rpcserver"
 
 	{{.imports}}
 
