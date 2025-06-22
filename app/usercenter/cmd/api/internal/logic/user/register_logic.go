@@ -1,7 +1,11 @@
 package user
 
 import (
+	"Luckify/app/usercenter/cmd/rpc/usercenter"
+	"Luckify/common/constants"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/usercenter/cmd/api/internal/svc"
 	"Luckify/app/usercenter/cmd/api/internal/types"
@@ -25,7 +29,18 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 }
 
 func (l *RegisterLogic) Register(req *types.RegisterReq) (resp *types.RegisterResp, err error) {
-	// todo: add your logic here and delete this line
+	PbResp, err := l.svcCtx.UsercenterRpc.Register(l.ctx, &usercenter.RegisterReq{
+		Mobile:   req.Mobile,
+		Password: req.Password,
+		AuthKey:  req.Mobile,
+		AuthType: constants.UserAuthTypeSystem,
+	})
+	if err != nil {
+		return nil, errors.Wrapf(err, "req: %+v", req)
+	}
+
+	resp = new(types.RegisterResp)
+	_ = copier.Copy(&resp, PbResp)
 
 	return
 }

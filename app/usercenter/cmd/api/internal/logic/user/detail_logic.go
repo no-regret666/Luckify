@@ -1,7 +1,12 @@
 package user
 
 import (
+	"Luckify/app/usercenter/cmd/rpc/pb"
+	"Luckify/app/usercenter/model"
+	"Luckify/common/utility"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/usercenter/cmd/api/internal/svc"
 	"Luckify/app/usercenter/cmd/api/internal/types"
@@ -25,7 +30,19 @@ func NewDetailLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DetailLogi
 }
 
 func (l *DetailLogic) Detail(req *types.UserInfoReq) (resp *types.UserInfoResp, err error) {
-	// todo: add your logic here and delete this line
+	userId := utility.GetUserIdFromCtx(l.ctx)
 
-	return
+	pbUserInfo, err := l.svcCtx.UsercenterRpc.GetUserInfo(l.ctx, &pb.GetUserInfoReq{
+		Id: userId,
+	})
+	if err != nil {
+		return nil, errors.Wrapf(model.ErrGetUserInfo, "GetUserInfo err: %v,userId: %d,userInfoResp: %+v", err, userId, pbUserInfo)
+	}
+
+	userInfo := types.User{}
+	_ = copier.Copy(&userInfo, pbUserInfo.User)
+
+	return &types.UserInfoResp{
+		UserInfo: userInfo,
+	}, nil
 }

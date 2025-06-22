@@ -61,8 +61,8 @@ type UserUpdateResp struct {
 
 type WXMiniAuthReq struct {
 	Code          string `json:"code"`
-	IV            string `json:"iv"`
-	EncryptedData string `json:"encryptedData"`
+	IV            string `json:"iv"` //加密偏移量
+	EncryptedData string `json:"encryptedData"` //加密的用户数据
 	Nickname      string `json:"nickname,optional"`
 	Avator        string `json:"avator,optional"`
 }
