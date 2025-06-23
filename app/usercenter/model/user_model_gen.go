@@ -48,6 +48,7 @@ type (
 		Nickname         string    `gorm:"column:nickname"`          // 昵称
 		Sex              int64     `gorm:"column:sex"`               // 性别 0:男 1:女
 		Avatar           string    `gorm:"column:avatar"`            // 头像
+		Info             string    `gorm:"column:info"`              // 简介
 		IsAdmin          int64     `gorm:"column:is_admin"`          // 是否管理员 0:否 1:是
 		Signature        string    `gorm:"column:signature"`         // 个性签名
 		LocationName     string    `gorm:"column:location_name"`     // 地址名称

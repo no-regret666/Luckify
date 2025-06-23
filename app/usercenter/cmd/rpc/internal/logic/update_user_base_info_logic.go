@@ -1,7 +1,9 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/pkg/errors"
 
 	"Luckify/app/usercenter/cmd/rpc/internal/svc"
 	"Luckify/app/usercenter/cmd/rpc/pb"
@@ -24,7 +26,35 @@ func NewUpdateUserBaseInfoLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 func (l *UpdateUserBaseInfoLogic) UpdateUserBaseInfo(in *pb.UpdateUserBaseInfoReq) (*pb.UpdateUserBaseInfoResp, error) {
-	// todo: add your logic here and delete this line
+	user, err := l.svcCtx.UserModel.FindOne(l.ctx, in.Id)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_ERROR), "err: %v", err)
+	}
+	if in.Nickname != "" {
+		user.Nickname = in.Nickname
+	}
+	if in.Avatar != "" {
+		user.Avatar = in.Avatar
+	}
+	if in.Sex != user.Sex {
+		user.Sex = in.Sex
+	}
+	if in.Info != "" {
+		user.Info = in.Info
+	}
+	if in.Signature != "" {
+		user.Signature = in.Signature
+	}
+	if in.Longitude != 0 {
+		user.Longitude = in.Longitude
+	}
+	if in.Latitude != 0 {
+		user.Latitude = in.Latitude
+	}
+	err = l.svcCtx.UserModel.Insert(l.ctx, nil, user)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_ERROR), "err: %v", err)
+	}
 
 	return &pb.UpdateUserBaseInfoResp{}, nil
 }

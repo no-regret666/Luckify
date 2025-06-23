@@ -1,7 +1,10 @@
 package logic
 
 import (
+	"Luckify/common/utility"
 	"context"
+	"github.com/pkg/errors"
+	"time"
 
 	"Luckify/app/usercenter/cmd/rpc/internal/svc"
 	"Luckify/app/usercenter/cmd/rpc/pb"
@@ -24,7 +27,15 @@ func NewGenerateTokenLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Gen
 }
 
 func (l *GenerateTokenLogic) GenerateToken(in *pb.GenerateTokenReq) (*pb.GenerateTokenResp, error) {
-	// todo: add your logic here and delete this line
-
-	return &pb.GenerateTokenResp{}, nil
+	now := time.Now().Unix()
+	accessToken, err :=
+		utility.GenerateJWT(l.svcCtx.Config.JwtAuth.AccessSecret, now, l.svcCtx.Config.JwtAuth.AccessExpire, in.UserId)
+	if err != nil {
+		return nil, errors.Wrapf(err, "GenerateToken err: %v", err)
+	}
+	return &pb.GenerateTokenResp{
+		AccessToken:  accessToken,
+		AccessExpire: l.svcCtx.Config.JwtAuth.AccessExpire,
+		RefreshAfter: l.svcCtx.Config.JwtAuth.AccessExpire / 2,
+	}, nil
 }

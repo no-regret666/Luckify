@@ -1,7 +1,12 @@
 package logic
 
 import (
+	"Luckify/app/usercenter/model"
+	"Luckify/common/utility"
+	"Luckify/common/xerr"
 	"context"
+	"github.com/pkg/errors"
+	"gorm.io/gorm"
 
 	"Luckify/app/usercenter/cmd/rpc/internal/svc"
 	"Luckify/app/usercenter/cmd/rpc/pb"
@@ -24,7 +29,57 @@ func NewRegisterLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Register
 }
 
 func (l *RegisterLogic) Register(in *pb.RegisterReq) (*pb.RegisterResp, error) {
-	// todo: add your logic here and delete this line
+	// check is user exists
+	user, err := l.svcCtx.UserModel.FindOneByMobile(l.ctx, in.Mobile)
+	if err != nil && !errors.Is(err, model.ErrNotFound) {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_ERROR), "mobile:%s,err:%+v", in.Mobile, err)
+	}
+	if user != nil {
+		return nil, errors.Wrapf(model.ErrUserAlreadyRegisterError, "Register user exists mobile:%s,err:%+v", in.Mobile, err)
+	}
+	user = &model.User{}
 
-	return &pb.RegisterResp{}, nil
+	// insert user and user_auth
+	err = l.svcCtx.TransacCtx(l.ctx, func(db *gorm.DB) error {
+		user.Mobile = in.Mobile
+		if len(user.Nickname) == 0 {
+			user.Nickname = utility.Krand(8, utility.KC_RAND_KIND_ALL)
+		}
+		if len(in.Password) > 0 {
+			user.Password = utility.Md5ByString(in.Password)
+		}
+
+		err := l.svcCtx.UserModel.Insert(l.ctx, db, user)
+		if err != nil {
+			return errors.Wrapf(err, "Register db user Insert err: %v", err)
+		}
+
+		userAuth := new(model.UserAuth)
+		userAuth.UserId = user.Id
+		userAuth.AuthKey = in.AuthKey
+		userAuth.AuthType = in.AuthType
+		err = l.svcCtx.UserAuthModel.Insert(l.ctx, db, userAuth)
+		if err != nil {
+			return errors.Wrapf(err, "Register db user_auth Insert err:%v", err)
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, errors.Wrapf(err, "Register db transaction error")
+	}
+
+	//generate token
+	generateTokenLogic := NewGenerateTokenLogic(l.ctx, l.svcCtx)
+	pbResp, err := generateTokenLogic.GenerateToken(&pb.GenerateTokenReq{
+		UserId: user.Id,
+	})
+	if err != nil {
+		return nil, errors.Wrapf(err, "Register GenerateToken err userId: %d,err: %v", user.Id, err)
+	}
+
+	return &pb.RegisterResp{
+		AccessToken:  pbResp.AccessToken,
+		AccessExpire: pbResp.AccessExpire,
+		RefreshAfter: pbResp.RefreshAfter,
+	}, nil
 }

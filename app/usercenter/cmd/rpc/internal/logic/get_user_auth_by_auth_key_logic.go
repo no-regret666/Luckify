@@ -1,7 +1,10 @@
 package logic
 
 import (
+	"Luckify/app/usercenter/model"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/usercenter/cmd/rpc/internal/svc"
 	"Luckify/app/usercenter/cmd/rpc/pb"
@@ -24,7 +27,15 @@ func NewGetUserAuthByAuthKeyLogic(ctx context.Context, svcCtx *svc.ServiceContex
 }
 
 func (l *GetUserAuthByAuthKeyLogic) GetUserAuthByAuthKey(in *pb.GetUserAuthByAuthKeyReq) (*pb.GetUserAuthByAuthKeyResp, error) {
-	// todo: add your logic here and delete this line
+	userAuth, err := l.svcCtx.UserAuthModel.FindOneByAuthTypeAuthKey(l.ctx, in.AuthType, in.AuthKey)
+	if err != nil && !errors.Is(err, model.ErrNotFound) {
+		return nil, errors.Wrapf(model.ErrGetUserAuth, "get user auth fail,err: %v,in: %+v", err, in)
+	}
 
-	return &pb.GetUserAuthByAuthKeyResp{}, nil
+	respUserAuth := &pb.UserAuth{}
+	_ = copier.Copy(respUserAuth, userAuth)
+
+	return &pb.GetUserAuthByAuthKeyResp{
+		UserAuth: respUserAuth,
+	}, nil
 }

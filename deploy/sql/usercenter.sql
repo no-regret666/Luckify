@@ -12,6 +12,7 @@ create table `user` (
     `nickname` varchar(255) not null default '' comment '昵称',
     `sex` tinyint(1) not null default 0 comment '性别 0:男 1:女',
     `avatar` varchar(255) not null default '' comment '头像',
+    `info` varchar(255) not null default '' comment '简介',
     `is_admin` tinyint(1) default 0 comment '是否管理员 0:否 1:是',
     `signature` varchar(200) not null default '' comment '个性签名',
     `location_name` varchar(100) not null default '' comment '地址名称',

@@ -1,7 +1,11 @@
 package logic
 
 import (
+	"Luckify/app/usercenter/model"
+	"Luckify/common/xerr"
 	"context"
+	"github.com/pkg/errors"
+	"gorm.io/gorm"
 
 	"Luckify/app/usercenter/cmd/rpc/internal/svc"
 	"Luckify/app/usercenter/cmd/rpc/pb"
@@ -24,7 +28,42 @@ func NewWxMiniAuthLogic(ctx context.Context, svcCtx *svc.ServiceContext) *WxMini
 }
 
 func (l *WxMiniAuthLogic) WxMiniAuth(in *pb.WxMiniAuthReq) (*pb.WxMiniAuthResp, error) {
-	// todo: add your logic here and delete this line
+	var userId int64
+	err := l.svcCtx.TransacCtx(l.ctx, func(db *gorm.DB) error {
+		user := new(model.User)
+		user.Nickname = in.Nickname
+		user.Avatar = in.Avatar
+		err := l.svcCtx.UserModel.Insert(l.ctx, db, user)
+		if err != nil {
+			return errors.Wrapf(xerr.NewErrCode(xerr.DB_ERROR), "WxMiniAuth user insert err:%v,user:%+v", err, user)
+		}
+		userId = user.Id
 
-	return &pb.WxMiniAuthResp{}, nil
+		userAuth := new(model.UserAuth)
+		userAuth.UserId = userId
+		userAuth.AuthType = in.AuthType
+		userAuth.AuthKey = in.AuthKey
+		err = l.svcCtx.UserAuthModel.Insert(l.ctx, db, userAuth)
+		if err != nil {
+			return errors.Wrapf(xerr.NewErrCode(xerr.DB_ERROR), "WxMiniAuth user_auth insert err:%v,userAuth:%+v", err, userAuth)
+		}
+		return nil
+	})
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_ERROR), "WxMiniAuth transact err:%v", err)
+	}
+
+	generateTokenLogic := NewGenerateTokenLogic(l.ctx, l.svcCtx)
+	tokenResp, err := generateTokenLogic.GenerateToken(&pb.GenerateTokenReq{
+		UserId: userId,
+	})
+	if err != nil {
+		return nil, errors.Wrapf(model.ErrGenerateToken, "GenerateToken userId: %d", userId)
+	}
+
+	return &pb.WxMiniAuthResp{
+		AccessToken:  tokenResp.AccessToken,
+		AccessExpire: tokenResp.AccessExpire,
+		RefreshAfter: tokenResp.RefreshAfter,
+	}, nil
 }
