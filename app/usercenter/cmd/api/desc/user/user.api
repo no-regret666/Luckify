@@ -56,7 +56,7 @@ type (
         Longitude float64 `json:"longitude"`
         Latitude float64 `json:"latitude"`
     }
-    UserUpdateResp{
+    UserUpdateResp {
     }
 )
 
@@ -76,7 +76,8 @@ type (
 )
 
 type (
-    UserInfoReq{}
+    UserInfoReq{
+    }
     UserInfoResp {
         UserInfo User `json:"userInfo"`
     }
