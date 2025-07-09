@@ -11,6 +11,10 @@ func init() {
 	message[TOKEN_GENERATE_ERROR] = "生成token失败"
 	message[DB_ERROR] = "数据库繁忙，请稍后再试"
 	message[DB_UPDATE_AFFECTED_ZERO_ERROR] = "更新数据影响行数为0"
+	message[DB_ERROR_NOT_FOUND] = "数据未找到"
+	message[DB_TRANSACTION_ERROR] = "数据库事务错误"
+
+	// 抽奖模块
 }
 
 func MapErrMsg(errcode uint32) string {

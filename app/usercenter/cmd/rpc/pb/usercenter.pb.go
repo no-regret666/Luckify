@@ -210,91 +210,6 @@ func (x *User) GetWinningRecord() int64 {
 	return 0
 }
 
-// 用户认证信息
-type UserAuth struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	CreateTime    int64                  `protobuf:"varint,2,opt,name=createTime,proto3" json:"createTime,omitempty"` // 创建时间（时间戳）
-	UpdateTime    int64                  `protobuf:"varint,3,opt,name=updateTime,proto3" json:"updateTime,omitempty"` //更新时间（时间戳）
-	UserId        int64                  `protobuf:"varint,4,opt,name=userId,proto3" json:"userId,omitempty"`         //用户id
-	AuthKey       string                 `protobuf:"bytes,5,opt,name=authKey,proto3" json:"authKey,omitempty"`        //平台唯一id
-	AuthType      string                 `protobuf:"bytes,6,opt,name=authType,proto3" json:"authType,omitempty"`      //平台类型
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserAuth) Reset() {
-	*x = UserAuth{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserAuth) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserAuth) ProtoMessage() {}
-
-func (x *UserAuth) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserAuth.ProtoReflect.Descriptor instead.
-func (*UserAuth) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *UserAuth) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *UserAuth) GetCreateTime() int64 {
-	if x != nil {
-		return x.CreateTime
-	}
-	return 0
-}
-
-func (x *UserAuth) GetUpdateTime() int64 {
-	if x != nil {
-		return x.UpdateTime
-	}
-	return 0
-}
-
-func (x *UserAuth) GetUserId() int64 {
-	if x != nil {
-		return x.UserId
-	}
-	return 0
-}
-
-func (x *UserAuth) GetAuthKey() string {
-	if x != nil {
-		return x.AuthKey
-	}
-	return ""
-}
-
-func (x *UserAuth) GetAuthType() string {
-	if x != nil {
-		return x.AuthType
-	}
-	return ""
-}
-
 // 添加用户请求
 type AddUserReq struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
@@ -320,7 +235,7 @@ type AddUserReq struct {
 
 func (x *AddUserReq) Reset() {
 	*x = AddUserReq{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[2]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -332,7 +247,7 @@ func (x *AddUserReq) String() string {
 func (*AddUserReq) ProtoMessage() {}
 
 func (x *AddUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[2]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -345,7 +260,7 @@ func (x *AddUserReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddUserReq.ProtoReflect.Descriptor instead.
 func (*AddUserReq) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{2}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *AddUserReq) GetMobile() string {
@@ -469,7 +384,7 @@ type AddUserResp struct {
 
 func (x *AddUserResp) Reset() {
 	*x = AddUserResp{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[3]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -481,7 +396,7 @@ func (x *AddUserResp) String() string {
 func (*AddUserResp) ProtoMessage() {}
 
 func (x *AddUserResp) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[3]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -494,7 +409,7 @@ func (x *AddUserResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddUserResp.ProtoReflect.Descriptor instead.
 func (*AddUserResp) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{3}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{2}
 }
 
 type LoginReq struct {
@@ -508,7 +423,7 @@ type LoginReq struct {
 
 func (x *LoginReq) Reset() {
 	*x = LoginReq{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[4]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -520,7 +435,7 @@ func (x *LoginReq) String() string {
 func (*LoginReq) ProtoMessage() {}
 
 func (x *LoginReq) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[4]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -533,7 +448,7 @@ func (x *LoginReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginReq.ProtoReflect.Descriptor instead.
 func (*LoginReq) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{4}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *LoginReq) GetAuthType() string {
@@ -568,7 +483,7 @@ type LoginResp struct {
 
 func (x *LoginResp) Reset() {
 	*x = LoginResp{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[5]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -580,7 +495,7 @@ func (x *LoginResp) String() string {
 func (*LoginResp) ProtoMessage() {}
 
 func (x *LoginResp) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[5]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -593,7 +508,7 @@ func (x *LoginResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginResp.ProtoReflect.Descriptor instead.
 func (*LoginResp) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{5}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *LoginResp) GetAccessToken() string {
@@ -630,7 +545,7 @@ type RegisterReq struct {
 
 func (x *RegisterReq) Reset() {
 	*x = RegisterReq{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[6]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -642,7 +557,7 @@ func (x *RegisterReq) String() string {
 func (*RegisterReq) ProtoMessage() {}
 
 func (x *RegisterReq) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[6]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -655,7 +570,7 @@ func (x *RegisterReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterReq.ProtoReflect.Descriptor instead.
 func (*RegisterReq) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{6}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *RegisterReq) GetMobile() string {
@@ -704,7 +619,7 @@ type RegisterResp struct {
 
 func (x *RegisterResp) Reset() {
 	*x = RegisterResp{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[7]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -716,7 +631,7 @@ func (x *RegisterResp) String() string {
 func (*RegisterResp) ProtoMessage() {}
 
 func (x *RegisterResp) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[7]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -729,7 +644,7 @@ func (x *RegisterResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RegisterResp.ProtoReflect.Descriptor instead.
 func (*RegisterResp) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{7}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *RegisterResp) GetAccessToken() string {
@@ -765,7 +680,7 @@ type WxMiniAuthReq struct {
 
 func (x *WxMiniAuthReq) Reset() {
 	*x = WxMiniAuthReq{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[8]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -777,7 +692,7 @@ func (x *WxMiniAuthReq) String() string {
 func (*WxMiniAuthReq) ProtoMessage() {}
 
 func (x *WxMiniAuthReq) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[8]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -790,7 +705,7 @@ func (x *WxMiniAuthReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WxMiniAuthReq.ProtoReflect.Descriptor instead.
 func (*WxMiniAuthReq) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{8}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *WxMiniAuthReq) GetNickname() string {
@@ -832,7 +747,7 @@ type WxMiniAuthResp struct {
 
 func (x *WxMiniAuthResp) Reset() {
 	*x = WxMiniAuthResp{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[9]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -844,7 +759,7 @@ func (x *WxMiniAuthResp) String() string {
 func (*WxMiniAuthResp) ProtoMessage() {}
 
 func (x *WxMiniAuthResp) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[9]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -857,7 +772,7 @@ func (x *WxMiniAuthResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WxMiniAuthResp.ProtoReflect.Descriptor instead.
 func (*WxMiniAuthResp) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{9}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *WxMiniAuthResp) GetAccessToken() string {
@@ -881,102 +796,6 @@ func (x *WxMiniAuthResp) GetRefreshAfter() int64 {
 	return 0
 }
 
-type GetUserAuthByAuthKeyReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	AuthKey       string                 `protobuf:"bytes,1,opt,name=authKey,proto3" json:"authKey,omitempty"`
-	AuthType      string                 `protobuf:"bytes,2,opt,name=authType,proto3" json:"authType,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserAuthByAuthKeyReq) Reset() {
-	*x = GetUserAuthByAuthKeyReq{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserAuthByAuthKeyReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserAuthByAuthKeyReq) ProtoMessage() {}
-
-func (x *GetUserAuthByAuthKeyReq) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserAuthByAuthKeyReq.ProtoReflect.Descriptor instead.
-func (*GetUserAuthByAuthKeyReq) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *GetUserAuthByAuthKeyReq) GetAuthKey() string {
-	if x != nil {
-		return x.AuthKey
-	}
-	return ""
-}
-
-func (x *GetUserAuthByAuthKeyReq) GetAuthType() string {
-	if x != nil {
-		return x.AuthType
-	}
-	return ""
-}
-
-type GetUserAuthByAuthKeyResp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserAuth      *UserAuth              `protobuf:"bytes,1,opt,name=userAuth,proto3" json:"userAuth,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetUserAuthByAuthKeyResp) Reset() {
-	*x = GetUserAuthByAuthKeyResp{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetUserAuthByAuthKeyResp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetUserAuthByAuthKeyResp) ProtoMessage() {}
-
-func (x *GetUserAuthByAuthKeyResp) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetUserAuthByAuthKeyResp.ProtoReflect.Descriptor instead.
-func (*GetUserAuthByAuthKeyResp) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *GetUserAuthByAuthKeyResp) GetUserAuth() *UserAuth {
-	if x != nil {
-		return x.UserAuth
-	}
-	return nil
-}
-
 type GetUserInfoReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -986,7 +805,7 @@ type GetUserInfoReq struct {
 
 func (x *GetUserInfoReq) Reset() {
 	*x = GetUserInfoReq{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[12]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -998,7 +817,7 @@ func (x *GetUserInfoReq) String() string {
 func (*GetUserInfoReq) ProtoMessage() {}
 
 func (x *GetUserInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[12]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1011,7 +830,7 @@ func (x *GetUserInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserInfoReq.ProtoReflect.Descriptor instead.
 func (*GetUserInfoReq) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{12}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetUserInfoReq) GetId() int64 {
@@ -1030,7 +849,7 @@ type GetUserInfoResp struct {
 
 func (x *GetUserInfoResp) Reset() {
 	*x = GetUserInfoResp{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[13]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1042,7 +861,7 @@ func (x *GetUserInfoResp) String() string {
 func (*GetUserInfoResp) ProtoMessage() {}
 
 func (x *GetUserInfoResp) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[13]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1055,7 +874,7 @@ func (x *GetUserInfoResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserInfoResp.ProtoReflect.Descriptor instead.
 func (*GetUserInfoResp) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{13}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *GetUserInfoResp) GetUser() *User {
@@ -1074,7 +893,7 @@ type GenerateTokenReq struct {
 
 func (x *GenerateTokenReq) Reset() {
 	*x = GenerateTokenReq{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[14]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1086,7 +905,7 @@ func (x *GenerateTokenReq) String() string {
 func (*GenerateTokenReq) ProtoMessage() {}
 
 func (x *GenerateTokenReq) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[14]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1099,7 +918,7 @@ func (x *GenerateTokenReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateTokenReq.ProtoReflect.Descriptor instead.
 func (*GenerateTokenReq) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{14}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GenerateTokenReq) GetUserId() int64 {
@@ -1120,7 +939,7 @@ type GenerateTokenResp struct {
 
 func (x *GenerateTokenResp) Reset() {
 	*x = GenerateTokenResp{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[15]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1132,7 +951,7 @@ func (x *GenerateTokenResp) String() string {
 func (*GenerateTokenResp) ProtoMessage() {}
 
 func (x *GenerateTokenResp) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[15]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1145,7 +964,7 @@ func (x *GenerateTokenResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GenerateTokenResp.ProtoReflect.Descriptor instead.
 func (*GenerateTokenResp) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{15}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GenerateTokenResp) GetAccessToken() string {
@@ -1185,7 +1004,7 @@ type UpdateUserBaseInfoReq struct {
 
 func (x *UpdateUserBaseInfoReq) Reset() {
 	*x = UpdateUserBaseInfoReq{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[16]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1197,7 +1016,7 @@ func (x *UpdateUserBaseInfoReq) String() string {
 func (*UpdateUserBaseInfoReq) ProtoMessage() {}
 
 func (x *UpdateUserBaseInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[16]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1210,7 +1029,7 @@ func (x *UpdateUserBaseInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserBaseInfoReq.ProtoReflect.Descriptor instead.
 func (*UpdateUserBaseInfoReq) Descriptor() ([]byte, []int) {
-	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{16}
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *UpdateUserBaseInfoReq) GetId() int64 {
@@ -1277,7 +1096,7 @@ type UpdateUserBaseInfoResp struct {
 
 func (x *UpdateUserBaseInfoResp) Reset() {
 	*x = UpdateUserBaseInfoResp{}
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[17]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1289,7 +1108,7 @@ func (x *UpdateUserBaseInfoResp) String() string {
 func (*UpdateUserBaseInfoResp) ProtoMessage() {}
 
 func (x *UpdateUserBaseInfoResp) ProtoReflect() protoreflect.Message {
-	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[17]
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1302,7 +1121,1334 @@ func (x *UpdateUserBaseInfoResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UpdateUserBaseInfoResp.ProtoReflect.Descriptor instead.
 func (*UpdateUserBaseInfoResp) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{14}
+}
+
+// --------------------------------- user_auth ---------------------------------
+// 用户认证信息
+type UserAuth struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	CreateTime    int64                  `protobuf:"varint,2,opt,name=createTime,proto3" json:"createTime,omitempty"` // 创建时间（时间戳）
+	UpdateTime    int64                  `protobuf:"varint,3,opt,name=updateTime,proto3" json:"updateTime,omitempty"` //更新时间（时间戳）
+	UserId        int64                  `protobuf:"varint,4,opt,name=userId,proto3" json:"userId,omitempty"`         //用户id
+	AuthKey       string                 `protobuf:"bytes,5,opt,name=authKey,proto3" json:"authKey,omitempty"`        //平台唯一id
+	AuthType      string                 `protobuf:"bytes,6,opt,name=authType,proto3" json:"authType,omitempty"`      //平台类型
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserAuth) Reset() {
+	*x = UserAuth{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[15]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserAuth) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserAuth) ProtoMessage() {}
+
+func (x *UserAuth) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[15]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserAuth.ProtoReflect.Descriptor instead.
+func (*UserAuth) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *UserAuth) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UserAuth) GetCreateTime() int64 {
+	if x != nil {
+		return x.CreateTime
+	}
+	return 0
+}
+
+func (x *UserAuth) GetUpdateTime() int64 {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return 0
+}
+
+func (x *UserAuth) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *UserAuth) GetAuthKey() string {
+	if x != nil {
+		return x.AuthKey
+	}
+	return ""
+}
+
+func (x *UserAuth) GetAuthType() string {
+	if x != nil {
+		return x.AuthType
+	}
+	return ""
+}
+
+type GetUserAuthByAuthKeyReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	AuthKey       string                 `protobuf:"bytes,1,opt,name=authKey,proto3" json:"authKey,omitempty"`
+	AuthType      string                 `protobuf:"bytes,2,opt,name=authType,proto3" json:"authType,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserAuthByAuthKeyReq) Reset() {
+	*x = GetUserAuthByAuthKeyReq{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[16]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserAuthByAuthKeyReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserAuthByAuthKeyReq) ProtoMessage() {}
+
+func (x *GetUserAuthByAuthKeyReq) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[16]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserAuthByAuthKeyReq.ProtoReflect.Descriptor instead.
+func (*GetUserAuthByAuthKeyReq) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *GetUserAuthByAuthKeyReq) GetAuthKey() string {
+	if x != nil {
+		return x.AuthKey
+	}
+	return ""
+}
+
+func (x *GetUserAuthByAuthKeyReq) GetAuthType() string {
+	if x != nil {
+		return x.AuthType
+	}
+	return ""
+}
+
+type GetUserAuthByAuthKeyResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserAuth      *UserAuth              `protobuf:"bytes,1,opt,name=userAuth,proto3" json:"userAuth,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserAuthByAuthKeyResp) Reset() {
+	*x = GetUserAuthByAuthKeyResp{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[17]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserAuthByAuthKeyResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserAuthByAuthKeyResp) ProtoMessage() {}
+
+func (x *GetUserAuthByAuthKeyResp) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[17]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserAuthByAuthKeyResp.ProtoReflect.Descriptor instead.
+func (*GetUserAuthByAuthKeyResp) Descriptor() ([]byte, []int) {
 	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *GetUserAuthByAuthKeyResp) GetUserAuth() *UserAuth {
+	if x != nil {
+		return x.UserAuth
+	}
+	return nil
+}
+
+type GetUserAuthByUserId struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserAuthByUserId) Reset() {
+	*x = GetUserAuthByUserId{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[18]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserAuthByUserId) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserAuthByUserId) ProtoMessage() {}
+
+func (x *GetUserAuthByUserId) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[18]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserAuthByUserId.ProtoReflect.Descriptor instead.
+func (*GetUserAuthByUserId) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *GetUserAuthByUserId) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+type GetUserAuthByUserIdResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserAuth      *UserAuth              `protobuf:"bytes,1,opt,name=userAuth,proto3" json:"userAuth,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserAuthByUserIdResp) Reset() {
+	*x = GetUserAuthByUserIdResp{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[19]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserAuthByUserIdResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserAuthByUserIdResp) ProtoMessage() {}
+
+func (x *GetUserAuthByUserIdResp) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[19]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserAuthByUserIdResp.ProtoReflect.Descriptor instead.
+func (*GetUserAuthByUserIdResp) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *GetUserAuthByUserIdResp) GetUserAuth() *UserAuth {
+	if x != nil {
+		return x.UserAuth
+	}
+	return nil
+}
+
+// --------------------------------- user_sponsor ---------------------------------
+type UserSponsor struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                  // id
+	UserId        int64                  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`          // userId
+	Type          int64                  `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`              // 1微信号 2公众号 3小程序 4微信群 5视频号
+	AppletType    int64                  `protobuf:"varint,4,opt,name=appletType,proto3" json:"appletType,omitempty"`  // type=3时该字段才有意义，1小程序链接 2路径跳转 3二维码跳转
+	Name          string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`               // 名称
+	Desc          string                 `protobuf:"bytes,6,opt,name=desc,proto3" json:"desc,omitempty"`               //描述
+	Avatar        string                 `protobuf:"bytes,7,opt,name=avatar,proto3" json:"avatar,omitempty"`           // 头像
+	IsShow        int64                  `protobuf:"varint,8,opt,name=isShow,proto3" json:"isShow,omitempty"`          //1显示 2不显示
+	QrCode        string                 `protobuf:"bytes,9,opt,name=qrCode,proto3" json:"qrCode,omitempty"`           // 二维码图片地址，type=1 2 3&applet_type=3 4的时候启用
+	InputA        string                 `protobuf:"bytes,10,opt,name=inputA,proto3" json:"inputA,omitempty"`          //type=5 applet_type=2 or applet_type=1 输入框A
+	InputB        string                 `protobuf:"bytes,11,opt,name=inputB,proto3" json:"inputB,omitempty"`          //type=5 applet_type=2 输入框B
+	CreateTime    int64                  `protobuf:"varint,12,opt,name=createTime,proto3" json:"createTime,omitempty"` // createTime
+	UpdateTime    int64                  `protobuf:"varint,13,opt,name=updateTime,proto3" json:"updateTime,omitempty"` // updateTime
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserSponsor) Reset() {
+	*x = UserSponsor{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[20]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserSponsor) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserSponsor) ProtoMessage() {}
+
+func (x *UserSponsor) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[20]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserSponsor.ProtoReflect.Descriptor instead.
+func (*UserSponsor) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *UserSponsor) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UserSponsor) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *UserSponsor) GetType() int64 {
+	if x != nil {
+		return x.Type
+	}
+	return 0
+}
+
+func (x *UserSponsor) GetAppletType() int64 {
+	if x != nil {
+		return x.AppletType
+	}
+	return 0
+}
+
+func (x *UserSponsor) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UserSponsor) GetDesc() string {
+	if x != nil {
+		return x.Desc
+	}
+	return ""
+}
+
+func (x *UserSponsor) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *UserSponsor) GetIsShow() int64 {
+	if x != nil {
+		return x.IsShow
+	}
+	return 0
+}
+
+func (x *UserSponsor) GetQrCode() string {
+	if x != nil {
+		return x.QrCode
+	}
+	return ""
+}
+
+func (x *UserSponsor) GetInputA() string {
+	if x != nil {
+		return x.InputA
+	}
+	return ""
+}
+
+func (x *UserSponsor) GetInputB() string {
+	if x != nil {
+		return x.InputB
+	}
+	return ""
+}
+
+func (x *UserSponsor) GetCreateTime() int64 {
+	if x != nil {
+		return x.CreateTime
+	}
+	return 0
+}
+
+func (x *UserSponsor) GetUpdateTime() int64 {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return 0
+}
+
+type AddUserSponsorReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        int64                  `protobuf:"varint,1,opt,name=userId,proto3" json:"userId,omitempty"`         // userId
+	Type          int64                  `protobuf:"varint,2,opt,name=type,proto3" json:"type,omitempty"`             // 1微信号 2公众号 3小程序 4微信群 5视频号
+	AppletType    int64                  `protobuf:"varint,3,opt,name=appletType,proto3" json:"appletType,omitempty"` // type=3时该字段才有意义，1小程序链接 2路径跳转 3二维码跳转
+	Name          string                 `protobuf:"bytes,4,opt,name=name,proto3" json:"name,omitempty"`              // 名称
+	Desc          string                 `protobuf:"bytes,5,opt,name=desc,proto3" json:"desc,omitempty"`              // 描述
+	Avatar        string                 `protobuf:"bytes,6,opt,name=avatar,proto3" json:"avatar,omitempty"`          // avatar
+	IsShow        int64                  `protobuf:"varint,7,opt,name=isShow,proto3" json:"isShow,omitempty"`         // 1显示 2不显示
+	QrCode        string                 `protobuf:"bytes,8,opt,name=qrCode,proto3" json:"qrCode,omitempty"`          // 二维码图片地址, type=1 2 3&applet_type=3 4的时候启用
+	InputA        string                 `protobuf:"bytes,9,opt,name=inputA,proto3" json:"inputA,omitempty"`          // type=5 applet_type=2 or applet_type=1 输入框A
+	InputB        string                 `protobuf:"bytes,10,opt,name=inputB,proto3" json:"inputB,omitempty"`         // type=5 applet_type=2输入框B
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddUserSponsorReq) Reset() {
+	*x = AddUserSponsorReq{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[21]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddUserSponsorReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddUserSponsorReq) ProtoMessage() {}
+
+func (x *AddUserSponsorReq) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[21]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddUserSponsorReq.ProtoReflect.Descriptor instead.
+func (*AddUserSponsorReq) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *AddUserSponsorReq) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *AddUserSponsorReq) GetType() int64 {
+	if x != nil {
+		return x.Type
+	}
+	return 0
+}
+
+func (x *AddUserSponsorReq) GetAppletType() int64 {
+	if x != nil {
+		return x.AppletType
+	}
+	return 0
+}
+
+func (x *AddUserSponsorReq) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *AddUserSponsorReq) GetDesc() string {
+	if x != nil {
+		return x.Desc
+	}
+	return ""
+}
+
+func (x *AddUserSponsorReq) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *AddUserSponsorReq) GetIsShow() int64 {
+	if x != nil {
+		return x.IsShow
+	}
+	return 0
+}
+
+func (x *AddUserSponsorReq) GetQrCode() string {
+	if x != nil {
+		return x.QrCode
+	}
+	return ""
+}
+
+func (x *AddUserSponsorReq) GetInputA() string {
+	if x != nil {
+		return x.InputA
+	}
+	return ""
+}
+
+func (x *AddUserSponsorReq) GetInputB() string {
+	if x != nil {
+		return x.InputB
+	}
+	return ""
+}
+
+type AddUserSponsorResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=Id,proto3" json:"Id,omitempty"` // id
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AddUserSponsorResp) Reset() {
+	*x = AddUserSponsorResp{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[22]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AddUserSponsorResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddUserSponsorResp) ProtoMessage() {}
+
+func (x *AddUserSponsorResp) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[22]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddUserSponsorResp.ProtoReflect.Descriptor instead.
+func (*AddUserSponsorResp) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *AddUserSponsorResp) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type UpdateUserSponsorReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                 // id
+	UserId        int64                  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`         // userId
+	Type          int64                  `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`             // 1微信号 2公众号 3小程序 4微信群 5视频号
+	AppletType    int64                  `protobuf:"varint,4,opt,name=appletType,proto3" json:"appletType,omitempty"` // type=3时该字段才有意义，1小程序链接 2路径跳转 3二维码跳转
+	Name          string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`              // 名称
+	Desc          string                 `protobuf:"bytes,6,opt,name=desc,proto3" json:"desc,omitempty"`              // 描述
+	Avatar        string                 `protobuf:"bytes,7,opt,name=avatar,proto3" json:"avatar,omitempty"`          // avatar
+	IsShow        int64                  `protobuf:"varint,8,opt,name=isShow,proto3" json:"isShow,omitempty"`         // 1显示 2不显示
+	QrCode        string                 `protobuf:"bytes,9,opt,name=qrCode,proto3" json:"qrCode,omitempty"`          // 二维码图片地址, type=1 2 3&applet_type=3 4的时候启用
+	InputA        string                 `protobuf:"bytes,10,opt,name=inputA,proto3" json:"inputA,omitempty"`         // type=5 applet_type=2 or applet_type=1 输入框A
+	InputB        string                 `protobuf:"bytes,11,opt,name=inputB,proto3" json:"inputB,omitempty"`         // type=5 applet_type=2输入框B
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateUserSponsorReq) Reset() {
+	*x = UpdateUserSponsorReq{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[23]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateUserSponsorReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateUserSponsorReq) ProtoMessage() {}
+
+func (x *UpdateUserSponsorReq) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[23]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateUserSponsorReq.ProtoReflect.Descriptor instead.
+func (*UpdateUserSponsorReq) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *UpdateUserSponsorReq) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UpdateUserSponsorReq) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *UpdateUserSponsorReq) GetType() int64 {
+	if x != nil {
+		return x.Type
+	}
+	return 0
+}
+
+func (x *UpdateUserSponsorReq) GetAppletType() int64 {
+	if x != nil {
+		return x.AppletType
+	}
+	return 0
+}
+
+func (x *UpdateUserSponsorReq) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *UpdateUserSponsorReq) GetDesc() string {
+	if x != nil {
+		return x.Desc
+	}
+	return ""
+}
+
+func (x *UpdateUserSponsorReq) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *UpdateUserSponsorReq) GetIsShow() int64 {
+	if x != nil {
+		return x.IsShow
+	}
+	return 0
+}
+
+func (x *UpdateUserSponsorReq) GetQrCode() string {
+	if x != nil {
+		return x.QrCode
+	}
+	return ""
+}
+
+func (x *UpdateUserSponsorReq) GetInputA() string {
+	if x != nil {
+		return x.InputA
+	}
+	return ""
+}
+
+func (x *UpdateUserSponsorReq) GetInputB() string {
+	if x != nil {
+		return x.InputB
+	}
+	return ""
+}
+
+type UpdateUserSponsorResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UpdateUserSponsorResp) Reset() {
+	*x = UpdateUserSponsorResp{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[24]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UpdateUserSponsorResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateUserSponsorResp) ProtoMessage() {}
+
+func (x *UpdateUserSponsorResp) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[24]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateUserSponsorResp.ProtoReflect.Descriptor instead.
+func (*UpdateUserSponsorResp) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{24}
+}
+
+type DelUserSponsorReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"` // id
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DelUserSponsorReq) Reset() {
+	*x = DelUserSponsorReq{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[25]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DelUserSponsorReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelUserSponsorReq) ProtoMessage() {}
+
+func (x *DelUserSponsorReq) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[25]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelUserSponsorReq.ProtoReflect.Descriptor instead.
+func (*DelUserSponsorReq) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *DelUserSponsorReq) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type DelUserSponsorResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *DelUserSponsorResp) Reset() {
+	*x = DelUserSponsorResp{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[26]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *DelUserSponsorResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DelUserSponsorResp) ProtoMessage() {}
+
+func (x *DelUserSponsorResp) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[26]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DelUserSponsorResp.ProtoReflect.Descriptor instead.
+func (*DelUserSponsorResp) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{26}
+}
+
+type SearchUserSponsorReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Page          int64                  `protobuf:"varint,1,opt,name=page,proto3" json:"page,omitempty"`              // page
+	Limit         int64                  `protobuf:"varint,2,opt,name=limit,proto3" json:"limit,omitempty"`            // limit
+	Id            int64                  `protobuf:"varint,3,opt,name=id,proto3" json:"id,omitempty"`                  // id
+	UserId        int64                  `protobuf:"varint,4,opt,name=userId,proto3" json:"userId,omitempty"`          // userId
+	Type          int64                  `protobuf:"varint,5,opt,name=type,proto3" json:"type,omitempty"`              // 1微信号 2公众号 3小程序 4微信群 5视频号
+	AppletType    int64                  `protobuf:"varint,6,opt,name=appletType,proto3" json:"appletType,omitempty"`  // type=3时该字段才有意义，1小程序链接 2路径跳转 3二维码跳转
+	Name          string                 `protobuf:"bytes,7,opt,name=name,proto3" json:"name,omitempty"`               // 名称
+	Desc          string                 `protobuf:"bytes,8,opt,name=desc,proto3" json:"desc,omitempty"`               // 描述
+	Avatar        string                 `protobuf:"bytes,9,opt,name=avatar,proto3" json:"avatar,omitempty"`           // avatar
+	IsShow        int64                  `protobuf:"varint,10,opt,name=isShow,proto3" json:"isShow,omitempty"`         // 1显示 2不显示
+	QrCode        string                 `protobuf:"bytes,11,opt,name=qrCode,proto3" json:"qrCode,omitempty"`          // 二维码图片地址, type=1 2 3&applet_type=3 4的时候启用
+	InputA        string                 `protobuf:"bytes,12,opt,name=inputA,proto3" json:"inputA,omitempty"`          // type=5 applet_type=2 or applet_type=1 输入框A
+	InputB        string                 `protobuf:"bytes,13,opt,name=inputB,proto3" json:"inputB,omitempty"`          // type=5 applet_type=2输入框B
+	CreateTime    int64                  `protobuf:"varint,14,opt,name=createTime,proto3" json:"createTime,omitempty"` // createTime
+	UpdateTime    int64                  `protobuf:"varint,15,opt,name=updateTime,proto3" json:"updateTime,omitempty"` // updateTime
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SearchUserSponsorReq) Reset() {
+	*x = SearchUserSponsorReq{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[27]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchUserSponsorReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchUserSponsorReq) ProtoMessage() {}
+
+func (x *SearchUserSponsorReq) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[27]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchUserSponsorReq.ProtoReflect.Descriptor instead.
+func (*SearchUserSponsorReq) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *SearchUserSponsorReq) GetPage() int64 {
+	if x != nil {
+		return x.Page
+	}
+	return 0
+}
+
+func (x *SearchUserSponsorReq) GetLimit() int64 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
+func (x *SearchUserSponsorReq) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SearchUserSponsorReq) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *SearchUserSponsorReq) GetType() int64 {
+	if x != nil {
+		return x.Type
+	}
+	return 0
+}
+
+func (x *SearchUserSponsorReq) GetAppletType() int64 {
+	if x != nil {
+		return x.AppletType
+	}
+	return 0
+}
+
+func (x *SearchUserSponsorReq) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *SearchUserSponsorReq) GetDesc() string {
+	if x != nil {
+		return x.Desc
+	}
+	return ""
+}
+
+func (x *SearchUserSponsorReq) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *SearchUserSponsorReq) GetIsShow() int64 {
+	if x != nil {
+		return x.IsShow
+	}
+	return 0
+}
+
+func (x *SearchUserSponsorReq) GetQrCode() string {
+	if x != nil {
+		return x.QrCode
+	}
+	return ""
+}
+
+func (x *SearchUserSponsorReq) GetInputA() string {
+	if x != nil {
+		return x.InputA
+	}
+	return ""
+}
+
+func (x *SearchUserSponsorReq) GetInputB() string {
+	if x != nil {
+		return x.InputB
+	}
+	return ""
+}
+
+func (x *SearchUserSponsorReq) GetCreateTime() int64 {
+	if x != nil {
+		return x.CreateTime
+	}
+	return 0
+}
+
+func (x *SearchUserSponsorReq) GetUpdateTime() int64 {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return 0
+}
+
+type SearchUserSponsorResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserSponsor   []*UserSponsor         `protobuf:"bytes,1,rep,name=userSponsor,proto3" json:"userSponsor,omitempty"` // userSponsor
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SearchUserSponsorResp) Reset() {
+	*x = SearchUserSponsorResp{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[28]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SearchUserSponsorResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SearchUserSponsorResp) ProtoMessage() {}
+
+func (x *SearchUserSponsorResp) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[28]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SearchUserSponsorResp.ProtoReflect.Descriptor instead.
+func (*SearchUserSponsorResp) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *SearchUserSponsorResp) GetUserSponsor() []*UserSponsor {
+	if x != nil {
+		return x.UserSponsor
+	}
+	return nil
+}
+
+type SponsorDetailReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SponsorDetailReq) Reset() {
+	*x = SponsorDetailReq{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[29]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SponsorDetailReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SponsorDetailReq) ProtoMessage() {}
+
+func (x *SponsorDetailReq) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[29]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SponsorDetailReq.ProtoReflect.Descriptor instead.
+func (*SponsorDetailReq) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *SponsorDetailReq) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type SponsorDetailResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                 // id
+	UserId        int64                  `protobuf:"varint,2,opt,name=userId,proto3" json:"userId,omitempty"`         // userId
+	Type          int64                  `protobuf:"varint,3,opt,name=type,proto3" json:"type,omitempty"`             // 1微信号 2公众号 3小程序 4微信群 5视频号
+	AppletType    int64                  `protobuf:"varint,4,opt,name=appletType,proto3" json:"appletType,omitempty"` // type=3时该字段才有意义，1小程序链接 2路径跳转 3二维码跳转
+	Name          string                 `protobuf:"bytes,5,opt,name=name,proto3" json:"name,omitempty"`              // 名称
+	Desc          string                 `protobuf:"bytes,6,opt,name=desc,proto3" json:"desc,omitempty"`              // 描述
+	Avatar        string                 `protobuf:"bytes,7,opt,name=avatar,proto3" json:"avatar,omitempty"`          // avatar
+	IsShow        int64                  `protobuf:"varint,8,opt,name=isShow,proto3" json:"isShow,omitempty"`         // 1显示 2不显示
+	QrCode        string                 `protobuf:"bytes,9,opt,name=qrCode,proto3" json:"qrCode,omitempty"`          // 二维码图片地址, type=1 2 3&applet_type=3 4的时候启用
+	InputA        string                 `protobuf:"bytes,10,opt,name=inputA,proto3" json:"inputA,omitempty"`         // type=5 applet_type=2 or applet_type=1 输入框A
+	InputB        string                 `protobuf:"bytes,11,opt,name=inputB,proto3" json:"inputB,omitempty"`         // type=5 applet_type=2输入框B
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *SponsorDetailResp) Reset() {
+	*x = SponsorDetailResp{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *SponsorDetailResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SponsorDetailResp) ProtoMessage() {}
+
+func (x *SponsorDetailResp) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SponsorDetailResp.ProtoReflect.Descriptor instead.
+func (*SponsorDetailResp) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *SponsorDetailResp) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *SponsorDetailResp) GetUserId() int64 {
+	if x != nil {
+		return x.UserId
+	}
+	return 0
+}
+
+func (x *SponsorDetailResp) GetType() int64 {
+	if x != nil {
+		return x.Type
+	}
+	return 0
+}
+
+func (x *SponsorDetailResp) GetAppletType() int64 {
+	if x != nil {
+		return x.AppletType
+	}
+	return 0
+}
+
+func (x *SponsorDetailResp) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *SponsorDetailResp) GetDesc() string {
+	if x != nil {
+		return x.Desc
+	}
+	return ""
+}
+
+func (x *SponsorDetailResp) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+func (x *SponsorDetailResp) GetIsShow() int64 {
+	if x != nil {
+		return x.IsShow
+	}
+	return 0
+}
+
+func (x *SponsorDetailResp) GetQrCode() string {
+	if x != nil {
+		return x.QrCode
+	}
+	return ""
+}
+
+func (x *SponsorDetailResp) GetInputA() string {
+	if x != nil {
+		return x.InputA
+	}
+	return ""
+}
+
+func (x *SponsorDetailResp) GetInputB() string {
+	if x != nil {
+		return x.InputB
+	}
+	return ""
+}
+
+type UserInfoForComment struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	Nickname      string                 `protobuf:"bytes,2,opt,name=nickname,proto3" json:"nickname,omitempty"`
+	Avatar        string                 `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *UserInfoForComment) Reset() {
+	*x = UserInfoForComment{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[31]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *UserInfoForComment) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UserInfoForComment) ProtoMessage() {}
+
+func (x *UserInfoForComment) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[31]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UserInfoForComment.ProtoReflect.Descriptor instead.
+func (*UserInfoForComment) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *UserInfoForComment) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+func (x *UserInfoForComment) GetNickname() string {
+	if x != nil {
+		return x.Nickname
+	}
+	return ""
+}
+
+func (x *UserInfoForComment) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
+	}
+	return ""
+}
+
+type GetUserInfoByUserIdsReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserIds       []int64                `protobuf:"varint,1,rep,packed,name=userIds,proto3" json:"userIds,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserInfoByUserIdsReq) Reset() {
+	*x = GetUserInfoByUserIdsReq{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[32]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserInfoByUserIdsReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserInfoByUserIdsReq) ProtoMessage() {}
+
+func (x *GetUserInfoByUserIdsReq) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[32]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserInfoByUserIdsReq.ProtoReflect.Descriptor instead.
+func (*GetUserInfoByUserIdsReq) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *GetUserInfoByUserIdsReq) GetUserIds() []int64 {
+	if x != nil {
+		return x.UserIds
+	}
+	return nil
+}
+
+type GetUserInfoByUserIdsResp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserInfo      []*UserInfoForComment  `protobuf:"bytes,1,rep,name=userInfo,proto3" json:"userInfo,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetUserInfoByUserIdsResp) Reset() {
+	*x = GetUserInfoByUserIdsResp{}
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[33]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetUserInfoByUserIdsResp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetUserInfoByUserIdsResp) ProtoMessage() {}
+
+func (x *GetUserInfoByUserIdsResp) ProtoReflect() protoreflect.Message {
+	mi := &file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes[33]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetUserInfoByUserIdsResp.ProtoReflect.Descriptor instead.
+func (*GetUserInfoByUserIdsResp) Descriptor() ([]byte, []int) {
+	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *GetUserInfoByUserIdsResp) GetUserInfo() []*UserInfoForComment {
+	if x != nil {
+		return x.UserInfo
+	}
+	return nil
 }
 
 var File_app_usercenter_cmd_rpc_pb_usercenter_proto protoreflect.FileDescriptor
@@ -1334,18 +2480,7 @@ const file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDesc = "" +
 	"\vall_lottery\x18\x11 \x01(\x03R\n" +
 	"allLottery\x12+\n" +
 	"\x11initiation_record\x18\x12 \x01(\x03R\x10initiationRecord\x12%\n" +
-	"\x0ewinning_record\x18\x13 \x01(\x03R\rwinningRecord\"\xa8\x01\n" +
-	"\bUserAuth\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1e\n" +
-	"\n" +
-	"createTime\x18\x02 \x01(\x03R\n" +
-	"createTime\x12\x1e\n" +
-	"\n" +
-	"updateTime\x18\x03 \x01(\x03R\n" +
-	"updateTime\x12\x16\n" +
-	"\x06userId\x18\x04 \x01(\x03R\x06userId\x12\x18\n" +
-	"\aauthKey\x18\x05 \x01(\tR\aauthKey\x12\x1a\n" +
-	"\bauthType\x18\x06 \x01(\tR\bauthType\"\xdc\x03\n" +
+	"\x0ewinning_record\x18\x13 \x01(\x03R\rwinningRecord\"\xdc\x03\n" +
 	"\n" +
 	"AddUserReq\x12\x16\n" +
 	"\x06mobile\x18\x01 \x01(\tR\x06mobile\x12\x1a\n" +
@@ -1394,12 +2529,7 @@ const file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDesc = "" +
 	"\x0eWxMiniAuthResp\x12 \n" +
 	"\vaccessToken\x18\x01 \x01(\tR\vaccessToken\x12\"\n" +
 	"\faccessExpire\x18\x02 \x01(\x03R\faccessExpire\x12\"\n" +
-	"\frefreshAfter\x18\x03 \x01(\x03R\frefreshAfter\"O\n" +
-	"\x17GetUserAuthByAuthKeyReq\x12\x18\n" +
-	"\aauthKey\x18\x01 \x01(\tR\aauthKey\x12\x1a\n" +
-	"\bauthType\x18\x02 \x01(\tR\bauthType\"D\n" +
-	"\x18GetUserAuthByAuthKeyResp\x12(\n" +
-	"\buserAuth\x18\x01 \x01(\v2\f.pb.UserAuthR\buserAuth\" \n" +
+	"\frefreshAfter\x18\x03 \x01(\x03R\frefreshAfter\" \n" +
 	"\x0eGetUserInfoReq\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\"/\n" +
 	"\x0fGetUserInfoResp\x12\x1c\n" +
@@ -1419,17 +2549,150 @@ const file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDesc = "" +
 	"\tsignature\x18\x06 \x01(\tR\tsignature\x12\x1c\n" +
 	"\tlongitude\x18\a \x01(\x01R\tlongitude\x12\x1a\n" +
 	"\blatitude\x18\b \x01(\x01R\blatitude\"\x18\n" +
-	"\x16UpdateUserBaseInfoResp2\xac\x03\n" +
+	"\x16UpdateUserBaseInfoResp\"\xa8\x01\n" +
+	"\bUserAuth\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1e\n" +
+	"\n" +
+	"createTime\x18\x02 \x01(\x03R\n" +
+	"createTime\x12\x1e\n" +
+	"\n" +
+	"updateTime\x18\x03 \x01(\x03R\n" +
+	"updateTime\x12\x16\n" +
+	"\x06userId\x18\x04 \x01(\x03R\x06userId\x12\x18\n" +
+	"\aauthKey\x18\x05 \x01(\tR\aauthKey\x12\x1a\n" +
+	"\bauthType\x18\x06 \x01(\tR\bauthType\"O\n" +
+	"\x17GetUserAuthByAuthKeyReq\x12\x18\n" +
+	"\aauthKey\x18\x01 \x01(\tR\aauthKey\x12\x1a\n" +
+	"\bauthType\x18\x02 \x01(\tR\bauthType\"D\n" +
+	"\x18GetUserAuthByAuthKeyResp\x12(\n" +
+	"\buserAuth\x18\x01 \x01(\v2\f.pb.UserAuthR\buserAuth\"-\n" +
+	"\x13GetUserAuthByUserId\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\x03R\x06userId\"C\n" +
+	"\x17GetUserAuthByUserIdResp\x12(\n" +
+	"\buserAuth\x18\x01 \x01(\v2\f.pb.UserAuthR\buserAuth\"\xc9\x02\n" +
+	"\vUserSponsor\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
+	"\x06userId\x18\x02 \x01(\x03R\x06userId\x12\x12\n" +
+	"\x04type\x18\x03 \x01(\x03R\x04type\x12\x1e\n" +
+	"\n" +
+	"appletType\x18\x04 \x01(\x03R\n" +
+	"appletType\x12\x12\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x12\x12\n" +
+	"\x04desc\x18\x06 \x01(\tR\x04desc\x12\x16\n" +
+	"\x06avatar\x18\a \x01(\tR\x06avatar\x12\x16\n" +
+	"\x06isShow\x18\b \x01(\x03R\x06isShow\x12\x16\n" +
+	"\x06qrCode\x18\t \x01(\tR\x06qrCode\x12\x16\n" +
+	"\x06inputA\x18\n" +
+	" \x01(\tR\x06inputA\x12\x16\n" +
+	"\x06inputB\x18\v \x01(\tR\x06inputB\x12\x1e\n" +
+	"\n" +
+	"createTime\x18\f \x01(\x03R\n" +
+	"createTime\x12\x1e\n" +
+	"\n" +
+	"updateTime\x18\r \x01(\x03R\n" +
+	"updateTime\"\xff\x01\n" +
+	"\x11AddUserSponsorReq\x12\x16\n" +
+	"\x06userId\x18\x01 \x01(\x03R\x06userId\x12\x12\n" +
+	"\x04type\x18\x02 \x01(\x03R\x04type\x12\x1e\n" +
+	"\n" +
+	"appletType\x18\x03 \x01(\x03R\n" +
+	"appletType\x12\x12\n" +
+	"\x04name\x18\x04 \x01(\tR\x04name\x12\x12\n" +
+	"\x04desc\x18\x05 \x01(\tR\x04desc\x12\x16\n" +
+	"\x06avatar\x18\x06 \x01(\tR\x06avatar\x12\x16\n" +
+	"\x06isShow\x18\a \x01(\x03R\x06isShow\x12\x16\n" +
+	"\x06qrCode\x18\b \x01(\tR\x06qrCode\x12\x16\n" +
+	"\x06inputA\x18\t \x01(\tR\x06inputA\x12\x16\n" +
+	"\x06inputB\x18\n" +
+	" \x01(\tR\x06inputB\"$\n" +
+	"\x12AddUserSponsorResp\x12\x0e\n" +
+	"\x02Id\x18\x01 \x01(\x03R\x02Id\"\x92\x02\n" +
+	"\x14UpdateUserSponsorReq\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
+	"\x06userId\x18\x02 \x01(\x03R\x06userId\x12\x12\n" +
+	"\x04type\x18\x03 \x01(\x03R\x04type\x12\x1e\n" +
+	"\n" +
+	"appletType\x18\x04 \x01(\x03R\n" +
+	"appletType\x12\x12\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x12\x12\n" +
+	"\x04desc\x18\x06 \x01(\tR\x04desc\x12\x16\n" +
+	"\x06avatar\x18\a \x01(\tR\x06avatar\x12\x16\n" +
+	"\x06isShow\x18\b \x01(\x03R\x06isShow\x12\x16\n" +
+	"\x06qrCode\x18\t \x01(\tR\x06qrCode\x12\x16\n" +
+	"\x06inputA\x18\n" +
+	" \x01(\tR\x06inputA\x12\x16\n" +
+	"\x06inputB\x18\v \x01(\tR\x06inputB\"\x17\n" +
+	"\x15UpdateUserSponsorResp\"#\n" +
+	"\x11DelUserSponsorReq\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\x14\n" +
+	"\x12DelUserSponsorResp\"\xfc\x02\n" +
+	"\x14SearchUserSponsorReq\x12\x12\n" +
+	"\x04page\x18\x01 \x01(\x03R\x04page\x12\x14\n" +
+	"\x05limit\x18\x02 \x01(\x03R\x05limit\x12\x0e\n" +
+	"\x02id\x18\x03 \x01(\x03R\x02id\x12\x16\n" +
+	"\x06userId\x18\x04 \x01(\x03R\x06userId\x12\x12\n" +
+	"\x04type\x18\x05 \x01(\x03R\x04type\x12\x1e\n" +
+	"\n" +
+	"appletType\x18\x06 \x01(\x03R\n" +
+	"appletType\x12\x12\n" +
+	"\x04name\x18\a \x01(\tR\x04name\x12\x12\n" +
+	"\x04desc\x18\b \x01(\tR\x04desc\x12\x16\n" +
+	"\x06avatar\x18\t \x01(\tR\x06avatar\x12\x16\n" +
+	"\x06isShow\x18\n" +
+	" \x01(\x03R\x06isShow\x12\x16\n" +
+	"\x06qrCode\x18\v \x01(\tR\x06qrCode\x12\x16\n" +
+	"\x06inputA\x18\f \x01(\tR\x06inputA\x12\x16\n" +
+	"\x06inputB\x18\r \x01(\tR\x06inputB\x12\x1e\n" +
+	"\n" +
+	"createTime\x18\x0e \x01(\x03R\n" +
+	"createTime\x12\x1e\n" +
+	"\n" +
+	"updateTime\x18\x0f \x01(\x03R\n" +
+	"updateTime\"J\n" +
+	"\x15SearchUserSponsorResp\x121\n" +
+	"\vuserSponsor\x18\x01 \x03(\v2\x0f.pb.UserSponsorR\vuserSponsor\"\"\n" +
+	"\x10SponsorDetailReq\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\x8f\x02\n" +
+	"\x11SponsorDetailResp\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
+	"\x06userId\x18\x02 \x01(\x03R\x06userId\x12\x12\n" +
+	"\x04type\x18\x03 \x01(\x03R\x04type\x12\x1e\n" +
+	"\n" +
+	"appletType\x18\x04 \x01(\x03R\n" +
+	"appletType\x12\x12\n" +
+	"\x04name\x18\x05 \x01(\tR\x04name\x12\x12\n" +
+	"\x04desc\x18\x06 \x01(\tR\x04desc\x12\x16\n" +
+	"\x06avatar\x18\a \x01(\tR\x06avatar\x12\x16\n" +
+	"\x06isShow\x18\b \x01(\x03R\x06isShow\x12\x16\n" +
+	"\x06qrCode\x18\t \x01(\tR\x06qrCode\x12\x16\n" +
+	"\x06inputA\x18\n" +
+	" \x01(\tR\x06inputA\x12\x16\n" +
+	"\x06inputB\x18\v \x01(\tR\x06inputB\"X\n" +
+	"\x12UserInfoForComment\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
+	"\bnickname\x18\x02 \x01(\tR\bnickname\x12\x16\n" +
+	"\x06avatar\x18\x03 \x01(\tR\x06avatar\"3\n" +
+	"\x17GetUserInfoByUserIdsReq\x12\x18\n" +
+	"\auserIds\x18\x01 \x03(\x03R\auserIds\"N\n" +
+	"\x18GetUserInfoByUserIdsResp\x122\n" +
+	"\buserInfo\x18\x01 \x03(\v2\x16.pb.UserInfoForCommentR\buserInfo2\xa0\a\n" +
 	"\n" +
 	"usercenter\x12$\n" +
 	"\x05login\x12\f.pb.LoginReq\x1a\r.pb.LoginResp\x12-\n" +
 	"\bregister\x12\x0f.pb.RegisterReq\x1a\x10.pb.RegisterResp\x123\n" +
 	"\n" +
 	"wxMiniAuth\x12\x11.pb.WxMiniAuthReq\x1a\x12.pb.WxMiniAuthResp\x12<\n" +
-	"\rgenerateToken\x12\x14.pb.GenerateTokenReq\x1a\x15.pb.GenerateTokenResp\x12Q\n" +
-	"\x14getUserAuthByAuthKey\x12\x1b.pb.GetUserAuthByAuthKeyReq\x1a\x1c.pb.GetUserAuthByAuthKeyResp\x126\n" +
+	"\rgenerateToken\x12\x14.pb.GenerateTokenReq\x1a\x15.pb.GenerateTokenResp\x126\n" +
 	"\vgetUserInfo\x12\x12.pb.GetUserInfoReq\x1a\x13.pb.GetUserInfoResp\x12K\n" +
-	"\x12updateUserBaseInfo\x12\x19.pb.UpdateUserBaseInfoReq\x1a\x1a.pb.UpdateUserBaseInfoRespB\x06Z\x04./pbb\x06proto3"
+	"\x12updateUserBaseInfo\x12\x19.pb.UpdateUserBaseInfoReq\x1a\x1a.pb.UpdateUserBaseInfoResp\x12Q\n" +
+	"\x14getUserInfoByUserIds\x12\x1b.pb.GetUserInfoByUserIdsReq\x1a\x1c.pb.GetUserInfoByUserIdsResp\x12Q\n" +
+	"\x14getUserAuthByAuthKey\x12\x1b.pb.GetUserAuthByAuthKeyReq\x1a\x1c.pb.GetUserAuthByAuthKeyResp\x12K\n" +
+	"\x13getUserAuthByUserId\x12\x17.pb.GetUserAuthByUserId\x1a\x1b.pb.GetUserAuthByUserIdResp\x12?\n" +
+	"\x0eAddUserSponsor\x12\x15.pb.AddUserSponsorReq\x1a\x16.pb.AddUserSponsorResp\x12H\n" +
+	"\x11UpdateUserSponsor\x12\x18.pb.UpdateUserSponsorReq\x1a\x19.pb.UpdateUserSponsorResp\x12?\n" +
+	"\x0eDelUserSponsor\x12\x15.pb.DelUserSponsorReq\x1a\x16.pb.DelUserSponsorResp\x12H\n" +
+	"\x11SearchUserSponsor\x12\x18.pb.SearchUserSponsorReq\x1a\x19.pb.SearchUserSponsorResp\x12<\n" +
+	"\rSponsorDetail\x12\x14.pb.SponsorDetailReq\x1a\x15.pb.SponsorDetailRespB\x06Z\x04./pbb\x06proto3"
 
 var (
 	file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescOnce sync.Once
@@ -1443,49 +2706,82 @@ func file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescGZIP() []byte {
 	return file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDescData
 }
 
-var file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_app_usercenter_cmd_rpc_pb_usercenter_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
 var file_app_usercenter_cmd_rpc_pb_usercenter_proto_goTypes = []any{
 	(*User)(nil),                     // 0: pb.User
-	(*UserAuth)(nil),                 // 1: pb.UserAuth
-	(*AddUserReq)(nil),               // 2: pb.AddUserReq
-	(*AddUserResp)(nil),              // 3: pb.AddUserResp
-	(*LoginReq)(nil),                 // 4: pb.LoginReq
-	(*LoginResp)(nil),                // 5: pb.LoginResp
-	(*RegisterReq)(nil),              // 6: pb.RegisterReq
-	(*RegisterResp)(nil),             // 7: pb.RegisterResp
-	(*WxMiniAuthReq)(nil),            // 8: pb.WxMiniAuthReq
-	(*WxMiniAuthResp)(nil),           // 9: pb.WxMiniAuthResp
-	(*GetUserAuthByAuthKeyReq)(nil),  // 10: pb.GetUserAuthByAuthKeyReq
-	(*GetUserAuthByAuthKeyResp)(nil), // 11: pb.GetUserAuthByAuthKeyResp
-	(*GetUserInfoReq)(nil),           // 12: pb.GetUserInfoReq
-	(*GetUserInfoResp)(nil),          // 13: pb.GetUserInfoResp
-	(*GenerateTokenReq)(nil),         // 14: pb.GenerateTokenReq
-	(*GenerateTokenResp)(nil),        // 15: pb.GenerateTokenResp
-	(*UpdateUserBaseInfoReq)(nil),    // 16: pb.UpdateUserBaseInfoReq
-	(*UpdateUserBaseInfoResp)(nil),   // 17: pb.UpdateUserBaseInfoResp
+	(*AddUserReq)(nil),               // 1: pb.AddUserReq
+	(*AddUserResp)(nil),              // 2: pb.AddUserResp
+	(*LoginReq)(nil),                 // 3: pb.LoginReq
+	(*LoginResp)(nil),                // 4: pb.LoginResp
+	(*RegisterReq)(nil),              // 5: pb.RegisterReq
+	(*RegisterResp)(nil),             // 6: pb.RegisterResp
+	(*WxMiniAuthReq)(nil),            // 7: pb.WxMiniAuthReq
+	(*WxMiniAuthResp)(nil),           // 8: pb.WxMiniAuthResp
+	(*GetUserInfoReq)(nil),           // 9: pb.GetUserInfoReq
+	(*GetUserInfoResp)(nil),          // 10: pb.GetUserInfoResp
+	(*GenerateTokenReq)(nil),         // 11: pb.GenerateTokenReq
+	(*GenerateTokenResp)(nil),        // 12: pb.GenerateTokenResp
+	(*UpdateUserBaseInfoReq)(nil),    // 13: pb.UpdateUserBaseInfoReq
+	(*UpdateUserBaseInfoResp)(nil),   // 14: pb.UpdateUserBaseInfoResp
+	(*UserAuth)(nil),                 // 15: pb.UserAuth
+	(*GetUserAuthByAuthKeyReq)(nil),  // 16: pb.GetUserAuthByAuthKeyReq
+	(*GetUserAuthByAuthKeyResp)(nil), // 17: pb.GetUserAuthByAuthKeyResp
+	(*GetUserAuthByUserId)(nil),      // 18: pb.GetUserAuthByUserId
+	(*GetUserAuthByUserIdResp)(nil),  // 19: pb.GetUserAuthByUserIdResp
+	(*UserSponsor)(nil),              // 20: pb.UserSponsor
+	(*AddUserSponsorReq)(nil),        // 21: pb.AddUserSponsorReq
+	(*AddUserSponsorResp)(nil),       // 22: pb.AddUserSponsorResp
+	(*UpdateUserSponsorReq)(nil),     // 23: pb.UpdateUserSponsorReq
+	(*UpdateUserSponsorResp)(nil),    // 24: pb.UpdateUserSponsorResp
+	(*DelUserSponsorReq)(nil),        // 25: pb.DelUserSponsorReq
+	(*DelUserSponsorResp)(nil),       // 26: pb.DelUserSponsorResp
+	(*SearchUserSponsorReq)(nil),     // 27: pb.SearchUserSponsorReq
+	(*SearchUserSponsorResp)(nil),    // 28: pb.SearchUserSponsorResp
+	(*SponsorDetailReq)(nil),         // 29: pb.SponsorDetailReq
+	(*SponsorDetailResp)(nil),        // 30: pb.SponsorDetailResp
+	(*UserInfoForComment)(nil),       // 31: pb.UserInfoForComment
+	(*GetUserInfoByUserIdsReq)(nil),  // 32: pb.GetUserInfoByUserIdsReq
+	(*GetUserInfoByUserIdsResp)(nil), // 33: pb.GetUserInfoByUserIdsResp
 }
 var file_app_usercenter_cmd_rpc_pb_usercenter_proto_depIdxs = []int32{
-	1,  // 0: pb.GetUserAuthByAuthKeyResp.userAuth:type_name -> pb.UserAuth
-	0,  // 1: pb.GetUserInfoResp.user:type_name -> pb.User
-	4,  // 2: pb.usercenter.login:input_type -> pb.LoginReq
-	6,  // 3: pb.usercenter.register:input_type -> pb.RegisterReq
-	8,  // 4: pb.usercenter.wxMiniAuth:input_type -> pb.WxMiniAuthReq
-	14, // 5: pb.usercenter.generateToken:input_type -> pb.GenerateTokenReq
-	10, // 6: pb.usercenter.getUserAuthByAuthKey:input_type -> pb.GetUserAuthByAuthKeyReq
-	12, // 7: pb.usercenter.getUserInfo:input_type -> pb.GetUserInfoReq
-	16, // 8: pb.usercenter.updateUserBaseInfo:input_type -> pb.UpdateUserBaseInfoReq
-	5,  // 9: pb.usercenter.login:output_type -> pb.LoginResp
-	7,  // 10: pb.usercenter.register:output_type -> pb.RegisterResp
-	9,  // 11: pb.usercenter.wxMiniAuth:output_type -> pb.WxMiniAuthResp
-	15, // 12: pb.usercenter.generateToken:output_type -> pb.GenerateTokenResp
-	11, // 13: pb.usercenter.getUserAuthByAuthKey:output_type -> pb.GetUserAuthByAuthKeyResp
-	13, // 14: pb.usercenter.getUserInfo:output_type -> pb.GetUserInfoResp
-	17, // 15: pb.usercenter.updateUserBaseInfo:output_type -> pb.UpdateUserBaseInfoResp
-	9,  // [9:16] is the sub-list for method output_type
-	2,  // [2:9] is the sub-list for method input_type
-	2,  // [2:2] is the sub-list for extension type_name
-	2,  // [2:2] is the sub-list for extension extendee
-	0,  // [0:2] is the sub-list for field type_name
+	0,  // 0: pb.GetUserInfoResp.user:type_name -> pb.User
+	15, // 1: pb.GetUserAuthByAuthKeyResp.userAuth:type_name -> pb.UserAuth
+	15, // 2: pb.GetUserAuthByUserIdResp.userAuth:type_name -> pb.UserAuth
+	20, // 3: pb.SearchUserSponsorResp.userSponsor:type_name -> pb.UserSponsor
+	31, // 4: pb.GetUserInfoByUserIdsResp.userInfo:type_name -> pb.UserInfoForComment
+	3,  // 5: pb.usercenter.login:input_type -> pb.LoginReq
+	5,  // 6: pb.usercenter.register:input_type -> pb.RegisterReq
+	7,  // 7: pb.usercenter.wxMiniAuth:input_type -> pb.WxMiniAuthReq
+	11, // 8: pb.usercenter.generateToken:input_type -> pb.GenerateTokenReq
+	9,  // 9: pb.usercenter.getUserInfo:input_type -> pb.GetUserInfoReq
+	13, // 10: pb.usercenter.updateUserBaseInfo:input_type -> pb.UpdateUserBaseInfoReq
+	32, // 11: pb.usercenter.getUserInfoByUserIds:input_type -> pb.GetUserInfoByUserIdsReq
+	16, // 12: pb.usercenter.getUserAuthByAuthKey:input_type -> pb.GetUserAuthByAuthKeyReq
+	18, // 13: pb.usercenter.getUserAuthByUserId:input_type -> pb.GetUserAuthByUserId
+	21, // 14: pb.usercenter.AddUserSponsor:input_type -> pb.AddUserSponsorReq
+	23, // 15: pb.usercenter.UpdateUserSponsor:input_type -> pb.UpdateUserSponsorReq
+	25, // 16: pb.usercenter.DelUserSponsor:input_type -> pb.DelUserSponsorReq
+	27, // 17: pb.usercenter.SearchUserSponsor:input_type -> pb.SearchUserSponsorReq
+	29, // 18: pb.usercenter.SponsorDetail:input_type -> pb.SponsorDetailReq
+	4,  // 19: pb.usercenter.login:output_type -> pb.LoginResp
+	6,  // 20: pb.usercenter.register:output_type -> pb.RegisterResp
+	8,  // 21: pb.usercenter.wxMiniAuth:output_type -> pb.WxMiniAuthResp
+	12, // 22: pb.usercenter.generateToken:output_type -> pb.GenerateTokenResp
+	10, // 23: pb.usercenter.getUserInfo:output_type -> pb.GetUserInfoResp
+	14, // 24: pb.usercenter.updateUserBaseInfo:output_type -> pb.UpdateUserBaseInfoResp
+	33, // 25: pb.usercenter.getUserInfoByUserIds:output_type -> pb.GetUserInfoByUserIdsResp
+	17, // 26: pb.usercenter.getUserAuthByAuthKey:output_type -> pb.GetUserAuthByAuthKeyResp
+	19, // 27: pb.usercenter.getUserAuthByUserId:output_type -> pb.GetUserAuthByUserIdResp
+	22, // 28: pb.usercenter.AddUserSponsor:output_type -> pb.AddUserSponsorResp
+	24, // 29: pb.usercenter.UpdateUserSponsor:output_type -> pb.UpdateUserSponsorResp
+	26, // 30: pb.usercenter.DelUserSponsor:output_type -> pb.DelUserSponsorResp
+	28, // 31: pb.usercenter.SearchUserSponsor:output_type -> pb.SearchUserSponsorResp
+	30, // 32: pb.usercenter.SponsorDetail:output_type -> pb.SponsorDetailResp
+	19, // [19:33] is the sub-list for method output_type
+	5,  // [5:19] is the sub-list for method input_type
+	5,  // [5:5] is the sub-list for extension type_name
+	5,  // [5:5] is the sub-list for extension extendee
+	0,  // [0:5] is the sub-list for field type_name
 }
 
 func init() { file_app_usercenter_cmd_rpc_pb_usercenter_proto_init() }
@@ -1499,7 +2795,7 @@ func file_app_usercenter_cmd_rpc_pb_usercenter_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDesc), len(file_app_usercenter_cmd_rpc_pb_usercenter_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   18,
+			NumMessages:   34,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

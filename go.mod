@@ -14,7 +14,7 @@ require (
 	github.com/zeromicro/go-zero v1.8.4
 	google.golang.org/grpc v1.67.1
 	google.golang.org/protobuf v1.36.5
-	gorm.io/gorm v1.30.0
+	gorm.io/gorm v1.26.1
 )
 
 require (

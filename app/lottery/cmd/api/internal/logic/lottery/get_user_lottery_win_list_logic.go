@@ -1,7 +1,12 @@
 package lottery
 
 import (
+	"Luckify/app/lottery/cmd/rpc/pb"
+	"Luckify/app/lottery/model"
+	"Luckify/common/utility"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/lottery/cmd/api/internal/svc"
 	"Luckify/app/lottery/cmd/api/internal/types"
@@ -25,7 +30,26 @@ func NewGetUserLotteryWinListLogic(ctx context.Context, svcCtx *svc.ServiceConte
 }
 
 func (l *GetUserLotteryWinListLogic) GetUserLotteryWinList(req *types.GetUserLotteryWinListReq) (resp *types.GetUserLotteryWinListResp, err error) {
-	// todo: add your logic here and delete this line
+	pbResp, err := l.svcCtx.LotteryRpc.GetUserWonList(l.ctx, &pb.GetUserWonListReq{
+		UserId: utility.GetUserIdFromCtx(l.ctx),
+		LastId: req.LastId,
+		Size:   req.Size,
+	})
+	if err != nil {
+		return nil, errors.Wrapf(model.ErrGetLotteryWinList, "rpc GetUserWonList error: %v", err)
+	}
 
-	return
+	list := make([]*types.UserLotteryList, 0)
+	for _, pbItem := range pbResp.List {
+		item := &types.UserLotteryList{}
+		item.Prize = new(types.LotteryPrize)
+		item.IsWon = 1
+		_ = copier.Copy(item.Prize, pbItem.Prize)
+		_ = copier.Copy(item, pbItem)
+		list = append(list, item)
+	}
+
+	return &types.GetUserLotteryWinListResp{
+		List: list,
+	}, nil
 }
