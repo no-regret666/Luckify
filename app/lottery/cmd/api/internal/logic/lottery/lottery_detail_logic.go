@@ -48,6 +48,15 @@ func (l *LotteryDetailLogic) LotteryDetail(req *types.LotteryDetailReq) (resp *t
 		_ = copier.Copy(item, prize)
 		resp.Prizes = append(resp.Prizes, item)
 	}
-	pbSponsor, err := l.svcCtx.UsercenterRpc.SponsorDetail(l.ctx, &usercenter.SponsorDetailReq{})
+	pbSponsor, err := l.svcCtx.UsercenterRpc.SponsorDetail(l.ctx, &usercenter.SponsorDetailReq{
+		Id: pbResp.Lottery.SponsorId,
+	})
+	if err != nil {
+		return nil, errors.Wrapf(model.ErrLotteryDetail, "rpc SponsorDetail error: %v", err)
+	}
+	resp.Sponsor = new(types.LotterySponsor)
+	_ = copier.Copy(resp.Sponsor, pbSponsor)
+	resp.IsParticipated = pbResp.IsParticipated
+
 	return
 }

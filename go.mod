@@ -5,11 +5,13 @@ go 1.24
 require (
 	github.com/SpectatorNan/gorm-zero v1.7.0
 	github.com/go-playground/validator/v10 v10.26.0
+	github.com/go-redsync/redsync/v4 v4.13.0
 	github.com/golang-jwt/jwt/v4 v4.5.2
 	github.com/jinzhu/copier v0.4.0
 	github.com/joho/godotenv v1.5.1
 	github.com/minio/minio-go/v7 v7.0.94
 	github.com/pkg/errors v0.9.1
+	github.com/redis/go-redis/v9 v9.10.0
 	github.com/silenceper/wechat/v2 v2.1.8
 	github.com/zeromicro/go-zero v1.8.4
 	google.golang.org/grpc v1.67.1
@@ -53,6 +55,8 @@ require (
 	github.com/grafana/pyroscope-go v1.2.2 // indirect
 	github.com/grafana/pyroscope-go/godeltaprof v0.1.8 // indirect
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0 // indirect
+	github.com/hashicorp/errwrap v1.1.0 // indirect
+	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/josharian/intern v1.0.0 // indirect
@@ -75,7 +79,6 @@ require (
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/prometheus/common v0.62.0 // indirect
 	github.com/prometheus/procfs v0.15.1 // indirect
-	github.com/redis/go-redis/v9 v9.10.0 // indirect
 	github.com/rs/xid v1.6.0 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/spaolacci/murmur3 v1.1.0 // indirect

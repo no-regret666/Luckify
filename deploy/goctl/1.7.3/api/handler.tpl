@@ -3,7 +3,6 @@ package {{.PkgName}}
 import (
 	"net/http"
 
-	"github.com/no-regret666/Luckify/common/response"
 	"github.com/go-playground/validator/v10"
 
 	"github.com/zeromicro/go-zero/rest/httpx"

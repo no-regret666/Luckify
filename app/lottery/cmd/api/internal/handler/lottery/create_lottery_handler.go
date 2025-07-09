@@ -1,10 +1,10 @@
 package lottery
 
 import (
+	"Luckify/common/response"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
-	"github.com/no-regret666/Luckify/common/response"
 
 	"Luckify/app/lottery/cmd/api/internal/logic/lottery"
 	"Luckify/app/lottery/cmd/api/internal/svc"

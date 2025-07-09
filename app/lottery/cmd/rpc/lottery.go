@@ -1,10 +1,9 @@
 package main
 
 import (
+	"Luckify/common/interceptor/rpcserver"
 	"flag"
 	"fmt"
-
-	"github.com/no-regret666/Luckify/common/interceptor/rpcserver"
 
 	"Luckify/app/lottery/cmd/rpc/internal/config"
 	"Luckify/app/lottery/cmd/rpc/internal/server"

@@ -1,7 +1,11 @@
 package lottery
 
 import (
+	"Luckify/app/lottery/cmd/rpc/pb"
+	"Luckify/app/lottery/model"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/lottery/cmd/api/internal/svc"
 	"Luckify/app/lottery/cmd/api/internal/types"
@@ -25,7 +29,23 @@ func NewLotteryListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Lotte
 }
 
 func (l *LotteryListLogic) LotteryList(req *types.LotteryListReq) (resp *types.LotteryListResp, err error) {
-	// todo: add your logic here and delete this line
+	pbResp, err := l.svcCtx.LotteryRpc.SearchLottery(l.ctx, &pb.SearchLotteryReq{
+		LastId:     req.LastId,
+		Limit:      req.PageSize,
+		IsSelected: req.IsSelected,
+	})
+	if err != nil {
+		return nil, errors.Wrapf(model.ErrSearchList, "rpc error: %v", err)
+	}
 
-	return
+	lotteryList := make([]types.Lottery, 0)
+	for _, lottery := range pbResp.List {
+		var item types.Lottery
+		err = copier.Copy(&item, lottery)
+		lotteryList = append(lotteryList, item)
+	}
+
+	return &types.LotteryListResp{
+		List: lotteryList,
+	}, nil
 }

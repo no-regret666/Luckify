@@ -1,7 +1,11 @@
 package logic
 
 import (
+	"Luckify/app/lottery/model"
+	"Luckify/common/constants"
+	"Luckify/common/xerr"
 	"context"
+	"github.com/pkg/errors"
 
 	"Luckify/app/lottery/cmd/rpc/internal/svc"
 	"Luckify/app/lottery/cmd/rpc/pb"
@@ -24,7 +28,25 @@ func NewAddLotteryParticipationLogic(ctx context.Context, svcCtx *svc.ServiceCon
 }
 
 func (l *AddLotteryParticipationLogic) AddLotteryParticipation(in *pb.AddLotteryParticipationReq) (*pb.AddLotteryParticipationResp, error) {
-	// todo: add your logic here and delete this line
+	dbLottery, err := l.svcCtx.LotteryModel.FindOne(l.ctx, in.LotteryId)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_ERROR_NOT_FOUND), "LotteryModel FindOne err: %+v", err)
+	}
 
-	return &pb.AddLotteryParticipationResp{}, nil
+	if dbLottery.IsAnnounced == constants.LotteryHasAnnounced {
+		return nil, errors.Wrapf(model.ErrHasAnnounced, "lottery has been announced")
+	}
+
+	lottery := &model.LotteryParticipation{
+		UserId:    in.UserId,
+		LotteryId: in.LotteryId,
+	}
+	err = l.svcCtx.LotteryParticipationModel.Insert(l.ctx, nil, lottery)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_PARTICIPATE_LOTTERY), "LotteryParticipation Insert err: %+v", err)
+	}
+
+	return &pb.AddLotteryParticipationResp{
+		Id: lottery.Id,
+	}, nil
 }

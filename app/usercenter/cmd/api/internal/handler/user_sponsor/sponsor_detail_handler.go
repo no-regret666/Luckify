@@ -1,10 +1,10 @@
 package user_sponsor
 
 import (
+	"Luckify/common/response"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
-	"github.com/no-regret666/Luckify/common/response"
 
 	"Luckify/app/usercenter/cmd/api/internal/logic/user_sponsor"
 	"Luckify/app/usercenter/cmd/api/internal/svc"
@@ -15,7 +15,7 @@ import (
 // 赞助商详情
 func SponsorDetailHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		var req types.SponosorDetailReq
+		var req types.SponsorDetailReq
 		if err := httpx.Parse(r, &req); err != nil {
 			response.ParamErrorResult(r, w, err)
 			return

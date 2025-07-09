@@ -1,10 +1,10 @@
 package user_sponsor
 
 import (
+	"Luckify/common/response"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
-	"github.com/no-regret666/Luckify/common/response"
 
 	"Luckify/app/usercenter/cmd/api/internal/logic/user_sponsor"
 	"Luckify/app/usercenter/cmd/api/internal/svc"

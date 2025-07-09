@@ -4,8 +4,6 @@ import (
 	"flag"
 	"fmt"
 
-	"github.com/no-regret666/Luckify/common/interceptor/rpcserver"
-
 	{{.imports}}
 
 	"github.com/zeromicro/go-zero/core/conf"
