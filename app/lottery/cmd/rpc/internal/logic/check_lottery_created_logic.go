@@ -1,7 +1,9 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/pkg/errors"
 
 	"Luckify/app/lottery/cmd/rpc/internal/svc"
 	"Luckify/app/lottery/cmd/rpc/pb"
@@ -24,7 +26,14 @@ func NewCheckLotteryCreatedLogic(ctx context.Context, svcCtx *svc.ServiceContext
 }
 
 func (l *CheckLotteryCreatedLogic) CheckLotteryCreated(in *pb.CheckLotteryCreatedReq) (*pb.CheckLotteryCreatedResp, error) {
-	// todo: add your logic here and delete this line
+	count, err := l.svcCtx.LotteryModel.GetCreatedCountByUserId(l.ctx, in.UserId)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_GET_LOTTERY_CREATED_COUNT), "Failed to get lottery created count: %v", err)
+	}
 
-	return &pb.CheckLotteryCreatedResp{}, nil
+	count = min(count, 1)
+
+	return &pb.CheckLotteryCreatedResp{
+		Created: count,
+	}, nil
 }

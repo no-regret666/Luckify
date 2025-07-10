@@ -1,7 +1,9 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/pkg/errors"
 
 	"Luckify/app/lottery/cmd/rpc/internal/svc"
 	"Luckify/app/lottery/cmd/rpc/pb"
@@ -24,7 +26,23 @@ func NewGetUserCreatedListLogic(ctx context.Context, svcCtx *svc.ServiceContext)
 }
 
 func (l *GetUserCreatedListLogic) GetUserCreatedList(in *pb.GetUserCreatedListReq) (*pb.GetUserCreatedListResp, error) {
-	// todo: add your logic here and delete this line
+	pbList, err := l.svcCtx.LotteryModel.GetUserCreatedList(l.ctx, in.UserId, in.LastId, in.Size)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_GET_USER_CREATED_LOTTERY_LIST_ERROR), "GetUserCreatedList error: %v", err)
+	}
 
-	return &pb.GetUserCreatedListResp{}, nil
+	list := make([]*pb.Lottery, 0)
+	for _, dbItem := range pbList {
+		item := new(pb.Lottery)
+		item.PublishTime = dbItem.PublishTime.Time.Unix()
+		item.AnnounceTime = dbItem.AnnounceTime.Unix()
+		item.AwardDeadline = dbItem.AwardDeadline.Unix()
+		item.CreateTime = dbItem.CreateTime.Unix()
+		item.UpdateTime = dbItem.UpdateTime.Unix()
+		list = append(list, item)
+	}
+
+	return &pb.GetUserCreatedListResp{
+		List: list,
+	}, nil
 }

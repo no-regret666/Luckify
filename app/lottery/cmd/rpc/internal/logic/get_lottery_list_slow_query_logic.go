@@ -1,7 +1,10 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/lottery/cmd/rpc/internal/svc"
 	"Luckify/app/lottery/cmd/rpc/pb"
@@ -24,7 +27,20 @@ func NewGetLotteryListSlowQueryLogic(ctx context.Context, svcCtx *svc.ServiceCon
 }
 
 func (l *GetLotteryListSlowQueryLogic) GetLotteryListSlowQuery(in *pb.GetLotteryListSlowQueryReq) (*pb.GetLotteryListSlowQueryResp, error) {
-	// todo: add your logic here and delete this line
-
-	return &pb.GetLotteryListSlowQueryResp{}, nil
+	list, err := l.svcCtx.LotteryModel.LotteryListSlowQuery(l.ctx, in.Limit, in.Page, in.IsSelected)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_GET_LOTTERY_LIST_ERROR), "get lottery list error: %v", err)
+	}
+	var pbList []*pb.Lottery
+	for _, lottery := range list {
+		pbLottery := &pb.Lottery{}
+		_ = copier.Copy(pbLottery, lottery)
+		pbLottery.PublishTime = lottery.PublishTime.Time.Unix()
+		pbLottery.AwardDeadline = lottery.AwardDeadline.Unix()
+		pbLottery.AnnounceTime = lottery.AnnounceTime.Unix()
+		pbList = append(pbList, pbLottery)
+	}
+	return &pb.GetLotteryListSlowQueryResp{
+		List: pbList,
+	}, nil
 }

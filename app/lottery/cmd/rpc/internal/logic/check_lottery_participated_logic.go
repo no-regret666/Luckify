@@ -1,7 +1,9 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/pkg/errors"
 
 	"Luckify/app/lottery/cmd/rpc/internal/svc"
 	"Luckify/app/lottery/cmd/rpc/pb"
@@ -24,7 +26,14 @@ func NewCheckLotteryParticipatedLogic(ctx context.Context, svcCtx *svc.ServiceCo
 }
 
 func (l *CheckLotteryParticipatedLogic) CheckLotteryParticipated(in *pb.CheckLotteryParticipatedReq) (*pb.CheckLotteryParticipatedResp, error) {
-	// todo: add your logic here and delete this line
+	count, err := l.svcCtx.LotteryParticipationModel.GetLotteryParticipatedCount(l.ctx, in.UserId)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_GET_LOTTERY_PARTICIPATED_COUNT), "Failed to get lottery participated count: %v", err)
+	}
 
-	return &pb.CheckLotteryParticipatedResp{}, nil
+	count = min(count, 1)
+
+	return &pb.CheckLotteryParticipatedResp{
+		Participated: count,
+	}, nil
 }

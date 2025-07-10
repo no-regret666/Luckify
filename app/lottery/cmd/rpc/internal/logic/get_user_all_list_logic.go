@@ -1,7 +1,12 @@
 package logic
 
 import (
+	"Luckify/app/lottery/model"
+	"Luckify/common/constants"
+	"Luckify/common/xerr"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/lottery/cmd/rpc/internal/svc"
 	"Luckify/app/lottery/cmd/rpc/pb"
@@ -24,7 +29,40 @@ func NewGetUserAllListLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Ge
 }
 
 func (l *GetUserAllListLogic) GetUserAllList(in *pb.GetUserAllListReq) (*pb.GetUserAllListResp, error) {
-	// todo: add your logic here and delete this line
+	dbList, err := l.svcCtx.LotteryParticipationModel.GetAllLotteryListByUserId(l.ctx, in.UserId, in.LastId, in.Size)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_GET_ALL_USER_LOTTERY_LIST_ERROR), "GetAllLotteryListByUserId error: %v", err)
+	}
+	list := make([]*pb.UserLotteryList, 0)
+	for _, dbItem := range dbList {
+		item := new(pb.UserLotteryList)
+		_ = copier.Copy(item, dbItem)
+		item.CreateTime = dbItem.CreateTime.Unix()
+		switch dbItem.IsWon {
+		case constants.PrizeNotWon:
+			// 若没中奖，返回当前抽奖的一等奖作为封面
+			dbPrize, err := l.svcCtx.PrizeModel.FindFirstLevelByLotteryId(l.ctx, dbItem.LotteryId)
+			if err != nil {
+				return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_GET_PRIZE_ERROR), "FindFirstLevelByLotteryId error: %v", err)
+			}
+			item.Prize = new(pb.Prize)
+			item.IsWon = false
+			_ = copier.Copy(item.Prize, dbPrize)
+		case constants.PrizeHasWon:
+			dbPrize, err := l.svcCtx.PrizeModel.FindOne(l.ctx, dbItem.PrizeId)
+			if err != nil && !errors.Is(err, model.ErrNotFound) {
+				return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_GET_PRIZE_ERROR), "FindOne error: %v", err)
+			}
+			item.Prize = new(pb.Prize)
+			item.IsWon = true
+			if !errors.Is(err, model.ErrNotFound) {
+				_ = copier.Copy(item.Prize, dbPrize)
+			}
+		}
+		list = append(list, item)
+	}
 
-	return &pb.GetUserAllListResp{}, nil
+	return &pb.GetUserAllListResp{
+		List: list,
+	}, nil
 }

@@ -13,6 +13,7 @@ require (
 	github.com/pkg/errors v0.9.1
 	github.com/redis/go-redis/v9 v9.10.0
 	github.com/silenceper/wechat/v2 v2.1.8
+	github.com/stretchr/testify v1.10.0
 	github.com/zeromicro/go-zero v1.8.4
 	google.golang.org/grpc v1.67.1
 	google.golang.org/protobuf v1.36.5
@@ -75,6 +76,7 @@ require (
 	github.com/openzipkin/zipkin-go v0.4.3 // indirect
 	github.com/pelletier/go-toml/v2 v2.2.2 // indirect
 	github.com/philhofer/fwd v1.1.3-0.20240916144458-20a13a1f6b7c // indirect
+	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/prometheus/client_golang v1.21.1 // indirect
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/prometheus/common v0.62.0 // indirect

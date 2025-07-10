@@ -101,7 +101,7 @@ func (m *defaultLotteryParticipationModel) BatchInsert(ctx context.Context, tx *
 func (m *defaultLotteryParticipationModel) FindOne(ctx context.Context, id int64) (*LotteryParticipation, error) {
 	goLotteryLotteryLotteryParticipationIdKey := fmt.Sprintf("%s%v", cacheGoLotteryLotteryLotteryParticipationIdPrefix, id)
 	var resp LotteryParticipation
-	err := m.QueryCtx(ctx, &resp, goLotteryLotteryLotteryParticipationIdKey, func(conn *gorm.DB, v interface{}) error {
+	err := m.QueryCtx(ctx, &resp, goLotteryLotteryLotteryParticipationIdKey, func(conn *gorm.DB) error {
 		return conn.Model(&LotteryParticipation{}).Where("`id` = ?", id).First(&resp).Error
 	})
 	switch err {

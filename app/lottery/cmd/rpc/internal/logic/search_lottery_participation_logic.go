@@ -1,7 +1,10 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/lottery/cmd/rpc/internal/svc"
 	"Luckify/app/lottery/cmd/rpc/pb"
@@ -24,7 +27,19 @@ func NewSearchLotteryParticipationLogic(ctx context.Context, svcCtx *svc.Service
 }
 
 func (l *SearchLotteryParticipationLogic) SearchLotteryParticipation(in *pb.SearchLotteryParticipationReq) (*pb.SearchLotteryParticipationResp, error) {
-	// todo: add your logic here and delete this line
+	dbLotteryParticipationList, err := l.svcCtx.LotteryParticipationModel.GetLotteryParticipationListByLotteryId(l.ctx, in.LotteryId, in.PageIndex, in.PageSize)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_GET_PARTICIPATED_BY_LOTTERY_ID), "get lottery participation list by lottery id error: %v", err)
+	}
 
-	return &pb.SearchLotteryParticipationResp{}, nil
+	resp := new(pb.SearchLotteryParticipationResp)
+	_ = copier.Copy(&resp.List, dbLotteryParticipationList)
+
+	count, err := l.svcCtx.LotteryParticipationModel.GetParticipatorsCountByLotteryId(l.ctx, in.LotteryId)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_GET_PARTICIPATIONS_COUNT), "get participators count by lottery id error: %v", err)
+	}
+	resp.Count = count
+
+	return resp, nil
 }
