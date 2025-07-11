@@ -4,15 +4,15 @@ import (
 	"flag"
 	"fmt"
 
-	"Luckify/app/usercenter/cmd/api/internal/config"
-	"Luckify/app/usercenter/cmd/api/internal/handler"
-	"Luckify/app/usercenter/cmd/api/internal/svc"
+	"Luckify/app/checkin/cmd/api/internal/config"
+	"Luckify/app/checkin/cmd/api/internal/handler"
+	"Luckify/app/checkin/cmd/api/internal/svc"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/rest"
 )
 
-var configFile = flag.String("f", "/home/noregret/Luckify/app/usercenter/cmd/api/etc/usercenter.yaml", "the config file")
+var configFile = flag.String("f", "etc/checkin.yaml", "the config file")
 
 func main() {
 	flag.Parse()

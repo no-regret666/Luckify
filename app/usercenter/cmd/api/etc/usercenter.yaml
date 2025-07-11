@@ -1,3 +1,22 @@
 Name: usercenter
 Host: 0.0.0.0
 Port: 8888
+Mode: dev
+
+JwtAuth:
+  AccessSecret: XLr0sdu4rUP2U/EZEQly3oc3w8u4QPOYJtK3Gr96Fds=
+  AccessExpire: 86400
+
+UsercenterRpcConf:
+  Endpoints:
+    - 127.0.0.1:7000
+  NonBlock: true
+
+LotteryRpcConf:
+  Endpoints:
+    - 127.0.0.1:7002
+  NonBlock: true
+
+WxMiniConf:
+  AppId: ${WEIXIN_APP_ID}
+  AppSecret: ${WEIXIN_APP_SECRET}

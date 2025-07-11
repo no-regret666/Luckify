@@ -4,10 +4,10 @@ import (
 	"flag"
 	"fmt"
 
-	"Luckify/app/usercenter/cmd/rpc/internal/config"
-	"Luckify/app/usercenter/cmd/rpc/internal/server"
-	"Luckify/app/usercenter/cmd/rpc/internal/svc"
-	"Luckify/app/usercenter/cmd/rpc/pb"
+	"Luckify/app/checkin/cmd/rpc/internal/config"
+	"Luckify/app/checkin/cmd/rpc/internal/server"
+	"Luckify/app/checkin/cmd/rpc/internal/svc"
+	"Luckify/app/checkin/cmd/rpc/pb"
 
 	"github.com/zeromicro/go-zero/core/conf"
 	"github.com/zeromicro/go-zero/core/service"
@@ -16,7 +16,7 @@ import (
 	"google.golang.org/grpc/reflection"
 )
 
-var configFile = flag.String("f", "/home/noregret/Luckify/app/usercenter/cmd/rpc/etc/usercenter.yaml", "the config file")
+var configFile = flag.String("f", "etc/checkin.yaml", "the config file")
 
 func main() {
 	flag.Parse()
@@ -26,13 +26,15 @@ func main() {
 	ctx := svc.NewServiceContext(c)
 
 	s := zrpc.MustNewServer(c.RpcServerConf, func(grpcServer *grpc.Server) {
-		pb.RegisterUsercenterServer(grpcServer, server.NewUsercenterServer(ctx))
+		pb.RegisterCheckinServer(grpcServer, server.NewCheckinServer(ctx))
 
 		if c.Mode == service.DevMode || c.Mode == service.TestMode {
 			reflection.Register(grpcServer)
 		}
 	})
 	defer s.Stop()
+
+	s.AddUnaryInterceptors(rpcserver.LoggerInterceptor)
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
 	s.Start()
