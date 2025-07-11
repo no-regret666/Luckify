@@ -24,7 +24,6 @@ func NewCheckUserPraiseLogic(ctx context.Context, svcCtx *svc.ServiceContext) *C
 }
 
 func (l *CheckUserPraiseLogic) CheckUserPraise(in *pb.CheckUserPraiseReq) (*pb.CheckUserPraiseResp, error) {
-	// todo: add your logic here and delete this line
-
+	
 	return &pb.CheckUserPraiseResp{}, nil
 }

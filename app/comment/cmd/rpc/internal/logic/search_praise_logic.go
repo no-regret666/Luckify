@@ -24,7 +24,5 @@ func NewSearchPraiseLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Sear
 }
 
 func (l *SearchPraiseLogic) SearchPraise(in *pb.SearchPraiseReq) (*pb.SearchPraiseResp, error) {
-	// todo: add your logic here and delete this line
-
 	return &pb.SearchPraiseResp{}, nil
 }

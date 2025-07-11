@@ -1,7 +1,10 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/comment/cmd/rpc/internal/svc"
 	"Luckify/app/comment/cmd/rpc/pb"
@@ -24,7 +27,15 @@ func NewGetPraiseByIdLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Get
 }
 
 func (l *GetPraiseByIdLogic) GetPraiseById(in *pb.GetPraiseByIdReq) (*pb.GetPraiseByIdResp, error) {
-	// todo: add your logic here and delete this line
+	dbPraise, err := l.svcCtx.PraiseModel.FindOne(l.ctx, in.Id)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_FIND_PRAISE_ERROR), "Failed to find praise,PraiseModel FindOne fail,req: %+v,err: %v", in, err)
+	}
 
-	return &pb.GetPraiseByIdResp{}, nil
+	pbPraise := &pb.Praise{}
+	_ = copier.Copy(pbPraise, dbPraise)
+
+	return &pb.GetPraiseByIdResp{
+		Praise: pbPraise,
+	}, nil
 }

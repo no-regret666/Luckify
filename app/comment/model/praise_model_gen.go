@@ -99,7 +99,7 @@ func (m *defaultPraiseModel) BatchInsert(ctx context.Context, tx *gorm.DB, news 
 func (m *defaultPraiseModel) FindOne(ctx context.Context, id int64) (*Praise, error) {
 	goLotteryCommentPraiseIdKey := fmt.Sprintf("%s%v", cacheGoLotteryCommentPraiseIdPrefix, id)
 	var resp Praise
-	err := m.QueryCtx(ctx, &resp, goLotteryCommentPraiseIdKey, func(conn *gorm.DB, v interface{}) error {
+	err := m.QueryCtx(ctx, &resp, goLotteryCommentPraiseIdKey, func(conn *gorm.DB) error {
 		return conn.Model(&Praise{}).Where("`id` = ?", id).First(&resp).Error
 	})
 	switch err {

@@ -1,7 +1,9 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/pkg/errors"
 
 	"Luckify/app/comment/cmd/rpc/internal/svc"
 	"Luckify/app/comment/cmd/rpc/pb"
@@ -24,7 +26,10 @@ func NewDelCommentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DelCom
 }
 
 func (l *DelCommentLogic) DelComment(in *pb.DelCommentReq) (*pb.DelCommentResp, error) {
-	// todo: add your logic here and delete this line
+	err := l.svcCtx.CommentModel.Delete(l.ctx, nil, in.Id)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_DELETE_COMMENT_ERROR), "Failed to delete comment,CommentModel Delete fail,req: %+v,err: %v", in, err)
+	}
 
 	return &pb.DelCommentResp{}, nil
 }

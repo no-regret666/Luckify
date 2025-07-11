@@ -1,7 +1,10 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/comment/cmd/rpc/internal/svc"
 	"Luckify/app/comment/cmd/rpc/pb"
@@ -24,7 +27,17 @@ func NewGetCommentByIdLogic(ctx context.Context, svcCtx *svc.ServiceContext) *Ge
 }
 
 func (l *GetCommentByIdLogic) GetCommentById(in *pb.GetCommentByIdReq) (*pb.GetCommentByIdResp, error) {
-	// todo: add your logic here and delete this line
+	dbComment, err := l.svcCtx.CommentModel.FindOne(l.ctx, in.Id)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_FIND_COMMENT_ERROR), "Failed to find comment by id, err: %v", err)
+	}
 
-	return &pb.GetCommentByIdResp{}, nil
+	pbComment := &pb.Comment{}
+	_ = copier.Copy(pbComment, dbComment)
+	pbComment.CreateTime = dbComment.CreateTime.Unix()
+	pbComment.UpdateTime = dbComment.UpdateTime.Unix()
+
+	return &pb.GetCommentByIdResp{
+		Comment: pbComment,
+	}, nil
 }

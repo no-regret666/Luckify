@@ -1,7 +1,9 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/pkg/errors"
 
 	"Luckify/app/comment/cmd/rpc/internal/svc"
 	"Luckify/app/comment/cmd/rpc/pb"
@@ -24,7 +26,12 @@ func NewIsPraiseLogic(ctx context.Context, svcCtx *svc.ServiceContext) *IsPraise
 }
 
 func (l *IsPraiseLogic) IsPraise(in *pb.IsPraiseReq) (*pb.IsPraiseResp, error) {
-	// todo: add your logic here and delete this line
+	dbPraise, err := l.svcCtx.PraiseModel.IsPraise(l.ctx, in.CommentId, in.UserId)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_FIND_PRAISE_ERROR), "PraiseModel IsPraise fail,req: %+v,err: %v", in, err)
+	}
 
-	return &pb.IsPraiseResp{}, nil
+	return &pb.IsPraiseResp{
+		PraiseId: dbPraise.Id,
+	}, nil
 }

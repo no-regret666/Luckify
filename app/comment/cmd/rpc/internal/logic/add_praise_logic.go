@@ -1,7 +1,11 @@
 package logic
 
 import (
+	"Luckify/app/comment/model"
+	"Luckify/common/xerr"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/comment/cmd/rpc/internal/svc"
 	"Luckify/app/comment/cmd/rpc/pb"
@@ -24,7 +28,12 @@ func NewAddPraiseLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddPrai
 }
 
 func (l *AddPraiseLogic) AddPraise(in *pb.AddPraiseReq) (*pb.AddPraiseResp, error) {
-	// todo: add your logic here and delete this line
+	dbPraise := &model.Praise{}
+	_ = copier.Copy(dbPraise, in)
+	err := l.svcCtx.PraiseModel.Insert(l.ctx, nil, dbPraise)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_INSERT_PRAISE_ERROR), "AddPraise err: %v", err)
+	}
 
 	return &pb.AddPraiseResp{}, nil
 }

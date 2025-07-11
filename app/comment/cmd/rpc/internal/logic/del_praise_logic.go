@@ -1,7 +1,9 @@
 package logic
 
 import (
+	"Luckify/common/xerr"
 	"context"
+	"github.com/pkg/errors"
 
 	"Luckify/app/comment/cmd/rpc/internal/svc"
 	"Luckify/app/comment/cmd/rpc/pb"
@@ -24,7 +26,10 @@ func NewDelPraiseLogic(ctx context.Context, svcCtx *svc.ServiceContext) *DelPrai
 }
 
 func (l *DelPraiseLogic) DelPraise(in *pb.DelPraiseReq) (*pb.DelPraiseResp, error) {
-	// todo: add your logic here and delete this line
+	err := l.svcCtx.PraiseModel.Delete(l.ctx, nil, in.Id)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_DELETE_PRAISE_ERROR), "Failed to delete praise,PraiseModel Delete fail,req: %+v,err: %v", in, err)
+	}
 
 	return &pb.DelPraiseResp{}, nil
 }

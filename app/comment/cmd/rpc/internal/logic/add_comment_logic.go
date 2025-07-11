@@ -1,7 +1,11 @@
 package logic
 
 import (
+	"Luckify/app/comment/model"
+	"Luckify/common/xerr"
 	"context"
+	"github.com/jinzhu/copier"
+	"github.com/pkg/errors"
 
 	"Luckify/app/comment/cmd/rpc/internal/svc"
 	"Luckify/app/comment/cmd/rpc/pb"
@@ -24,7 +28,12 @@ func NewAddCommentLogic(ctx context.Context, svcCtx *svc.ServiceContext) *AddCom
 }
 
 func (l *AddCommentLogic) AddComment(in *pb.AddCommentReq) (*pb.AddCommentResp, error) {
-	// todo: add your logic here and delete this line
+	dbComment := &model.Comment{}
+	_ = copier.Copy(dbComment, in)
+	err := l.svcCtx.CommentModel.Insert(l.ctx, nil, dbComment)
+	if err != nil {
+		return nil, errors.Wrapf(xerr.NewErrCode(xerr.DB_INSERT_COMMENT_ERROR), "AddComment err: %v", err)
+	}
 
 	return &pb.AddCommentResp{}, nil
 }
