@@ -1,14 +1,32 @@
-Name: upload.rpc
-ListenOn: 0.0.0.0:8080
+Name: upload-rpc
+ListenOn: 0.0.0.0:7001
 Mode: dev
 Cache:
-  - Host: Luckify-redis:6379
+  - Host: go-lottery-redis:6379
     Pass: Wang
+
 MySQL:
-  Path: go-lottery-mysql
+  Path: 127.0.0.1
   Port: 3306
   Dbname: go-lottery-upload
   Username: root
   Password: Wang
   Config: charset=utf8mb4&parseTime=true&loc=Local
 
+JwtAuth:
+  AccessSecret: XLr0sdu4rUP2U/EZEQly3oc3w8u4QPOYJtK3Gr96Fds=
+  AccessExpire: 604800
+
+OssConf:
+  Endpoint: ${MINIO_ENDPOINT}
+  AccessKey: ${MINIO_ACCESS_KEY}
+  SecretKey: ${MINIO_SECRET_KEY}
+  Bucket: ${MINIO_BUCKET}
+  Region: ${MINIO_REGION}
+  UseSSL: false
+
+Telemetry:
+  Name: upload-rpc
+  Endpoint: http://jaeger:14268/api/traces
+  Sampler: 1.0
+  Batcher: jaeger
