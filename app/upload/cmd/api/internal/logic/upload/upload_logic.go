@@ -40,6 +40,7 @@ func (l *UploadLogic) Upload(req *types.UserUploadReq) (resp *types.UserUploadRe
 	if err != nil {
 		return nil, errors.Wrapf(model.ErrUpload, "upload file fail with rpc err: %+v", req)
 	}
+	logx.Infof("Successfully upload file %+v", pbResp.Url)
 	return &types.UserUploadResp{
 		Url: pbResp.Url,
 	}, nil

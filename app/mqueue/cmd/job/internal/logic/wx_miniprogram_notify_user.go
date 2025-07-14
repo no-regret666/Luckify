@@ -94,6 +94,6 @@ func (l *WxMiniProgramNotifyUserHandler) ProcessTask(ctx context.Context, t *asy
 			return errors.Wrapf(ErrNotifyUserFail, "WxMiniProgramNotifyUserHandler send message fail,errCode:%v,errMsg:%v,reqData:%+v", resp.ErrCode, resp.ErrMsg, reqData)
 		}
 	}
-	
+
 	return nil
 }

@@ -5,6 +5,7 @@
     "description": "文件上传服务",
     "version": "v1"
   },
+  "host": "localhost:8001",
   "schemes": [
     "http",
     "https"

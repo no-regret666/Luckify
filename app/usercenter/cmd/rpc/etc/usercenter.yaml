@@ -1,4 +1,4 @@
-Name: usercenter.rpc
+Name: usercenter-rpc
 ListenOn: 0.0.0.0:7000
 Mode: dev
 Cache:
@@ -13,10 +13,10 @@ MySQL:
   Config: charset=utf8mb4&parseTime=true&loc=Local
 JwtAuth:
   AccessSecret: XLr0sdu4rUP2U/EZEQly3oc3w8u4QPOYJtK3Gr96Fds=
-  AccessExpire: 86400
+  AccessExpire: 604800
 
-#Telemetry:
-#  Name: usercenter-rpc
-#  Endpoint: http://jaeger:14268/api/traces
-#  Sampler: 1.0
-#  Batcher: jaeger
+Telemetry:
+  Name: usercenter-rpc
+  Endpoint: http://jaeger:14268/api/traces
+  Sampler: 1.0
+  Batcher: jaeger
