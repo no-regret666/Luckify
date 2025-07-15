@@ -2,8 +2,7 @@ Name: usercenter-rpc
 ListenOn: 0.0.0.0:7000
 Mode: dev
 Cache:
-  - Host: go-lottery-redis:6379
-    Pass: root
+  - Host: localhost:6379
 MySQL:
   Path: localhost
   Port: 3306
@@ -17,6 +16,6 @@ JwtAuth:
 
 Telemetry:
   Name: usercenter-rpc
-  Endpoint: http://jaeger:14268/api/traces
+  Endpoint: http://localhost:14268/api/traces
   Sampler: 1.0
   Batcher: jaeger

@@ -65,8 +65,9 @@ func (l *LoginLogic) loginByMobile(mobile, password string) (int64, error) {
 	}
 
 	if !(utility.Md5ByString(password) == user.Password) {
-		return 0, errors.Wrapf(model.ErrPasswordNotMatch, "password noot correct")
+		err := errors.Wrapf(model.ErrPasswordNotMatch, "password not correct")
+		return 0, err
 	}
-	
+
 	return user.Id, nil
 }

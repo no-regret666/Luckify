@@ -69,26 +69,69 @@ A：
 - lottery 模块通过调用 checkin RPC 查询用户积分； 
 - comment 模块调用 usercenter RPC 获取用户信息等。
 
-五、异常处理与日志
+五、错误处理
 
-Q：怎么处理错误？怎么记录日志？
+Q：怎么处理错误？
 
 A：
-- 自定义全局码在common/xerr包中;
-- 响应封装使用common/response.HttpResult
-- RPC层的启动文件main方法中，加了grpc的全局拦截器
+
+**rpc：**
+```
+package codes // import "google.golang.org/grpc/codes"
+
+import (
+	"fmt"
+	"strconv"
+)
+
+// A Code is an unsigned 32-bit error code as defined in the gRPC spec.
+type Code uint32
+.......
+```
+grpc的err对应的错误码是一个uint32，我们自定义错误用uint32并在rpc的全局拦截器返回时候转成grpc的err就可以被客户端正常接收。
+
+自定义全局错误码在app/common/xerr中；
+
+```
+if err != nil {
+	return errors.Wrapf(xerr.ErrDBError, "insertResult.LastInsertId err:%v,user:%+v", err, user)
+}
+``` 
+第一个参数返回给前端，第二个参数记录日志。
+
+通过在rpc的启动文件main方法中，添加grpc的全局拦截器实现。
+
 ```
 package main
+
 ......
+
 func main() {
-	........
+  
+	....... 业务逻辑
+
 	//rpc log,grpc的全局拦截器
 	s.AddUnaryInterceptors(rpcserver.LoggerInterceptor)
+
 	.......
 }
 ```
-rpcserver.LoggerInterceptor中，将自定义业务错误转成grpc错误返回给前端，同时打印记录日志
-- panic 使用 recover 捕获，记录到日志，防止服务崩溃。
+
+LoggerInterceptor在common/interceptor/rpcserver中实现。
+
+**api：**
+
+common/response中实现了错误处理。
+
+- 参数错误：ParamErrorResult 函数
+- 业务返回的错误：HttpResult 函数
+  - 成功直接返回
+  - 如果错误先判断：
+    - 1.自定义错误（api中定义的错误），直接返回给前端 
+    - 2.grpc错误（rpc业务抛出来的），通过uint32转成我们自己的错误码，根据错误码再去我们自定义的错误信息中找到定义的错误信息返回给前端
+    - 3.都找不到就返回默认错误“服务器开小差了”
+
+
 
 六、部署与测试
 
