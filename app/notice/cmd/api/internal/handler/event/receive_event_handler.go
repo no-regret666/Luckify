@@ -1,6 +1,7 @@
 package event
 
 import (
+	"Luckify/common/response"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"
@@ -27,7 +28,7 @@ func ReceiveEventHandler(svcCtx *svc.ServiceContext) http.HandlerFunc {
 		}
 
 		l := event.NewReceiveEventLogic(r.Context(), svcCtx)
-		resp, err := l.ReceiveEvent(&req)
+		resp, err := l.ReceiveEvent(&req, &req)
 		response.HttpResult(r, w, resp, err)
 	}
 }

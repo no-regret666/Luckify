@@ -31,6 +31,7 @@ func NewAddInstantLotteryParticipationLogic(ctx context.Context, svcCtx *svc.Ser
 }
 
 func (l *AddInstantLotteryParticipationLogic) AddInstantLotteryParticipation(in *pb.AddInstantLotteryParticipationReq) (*pb.AddInstantLotteryParticipationResp, error) {
+	// 使用分布式锁控制并发，同一时刻只有一个实例可以处理对该LotteryId的抽奖请求，防止超卖
 	mutexKey := constants.InstantLotteryRedisKey + strconv.Itoa(int(in.LotteryId))
 	mutex := l.svcCtx.RedsyncClient.NewMutex(mutexKey)
 	if err := mutex.Lock(); err != nil {

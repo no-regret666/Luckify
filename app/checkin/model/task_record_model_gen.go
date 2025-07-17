@@ -98,7 +98,7 @@ func (m *defaultTaskRecordModel) BatchInsert(ctx context.Context, tx *gorm.DB, n
 func (m *defaultTaskRecordModel) FindOne(ctx context.Context, id int64) (*TaskRecord, error) {
 	goLotteryCheckinTaskRecordIdKey := fmt.Sprintf("%s%v", cacheGoLotteryCheckinTaskRecordIdPrefix, id)
 	var resp TaskRecord
-	err := m.QueryCtx(ctx, &resp, goLotteryCheckinTaskRecordIdKey, func(conn *gorm.DB, v interface{}) error {
+	err := m.QueryCtx(ctx, &resp, goLotteryCheckinTaskRecordIdKey, func(conn *gorm.DB) error {
 		return conn.Model(&TaskRecord{}).Where("`id` = ?", id).First(&resp).Error
 	})
 	switch err {

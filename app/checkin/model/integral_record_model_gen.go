@@ -97,7 +97,7 @@ func (m *defaultIntegralRecordModel) BatchInsert(ctx context.Context, tx *gorm.D
 func (m *defaultIntegralRecordModel) FindOne(ctx context.Context, id int64) (*IntegralRecord, error) {
 	goLotteryCheckinIntegralRecordIdKey := fmt.Sprintf("%s%v", cacheGoLotteryCheckinIntegralRecordIdPrefix, id)
 	var resp IntegralRecord
-	err := m.QueryCtx(ctx, &resp, goLotteryCheckinIntegralRecordIdKey, func(conn *gorm.DB, v interface{}) error {
+	err := m.QueryCtx(ctx, &resp, goLotteryCheckinIntegralRecordIdKey, func(conn *gorm.DB) error {
 		return conn.Model(&IntegralRecord{}).Where("`id` = ?", id).First(&resp).Error
 	})
 	switch err {

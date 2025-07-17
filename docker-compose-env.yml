@@ -1,7 +1,7 @@
 services:
   #jaeger链路追踪
   jaeger:
-    image: jaegertracing/all-in-one:lastest
+    image: jaegertracing/all-in-one:latest
     container_name: jaeger
     ports:
       - "5775:5775/udp"
@@ -108,7 +108,7 @@ services:
     volumes:
       - ./deploy/filebeat/conf/filebeat.yml:/usr/share/filebeat/filebeat.yml
       # 此处需指定docker的containers目录，取决于你docker的配置
-      - /mn- subnet: 172.20.0.0/16t/docker/data/docker/containers:/var/lib/docker/containers
+      - /var/lib/docker/containers:/var/lib/docker/containers
     networks:
       - go-lottery-network
     depends_on:
@@ -154,6 +154,41 @@ services:
     command: "redis-server --requirepass root --appendonly yes"
     privileged: true
     restart: always
+    networks:
+      - go-lottery-network
+
+  prometheus:
+    image: prom/prometheus:v2.28.1
+    container_name: prometheus
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+    volumes:
+      - ./deploy/prometheus/server/prometheus.yml:/etc/prometheus/prometheus.yml
+      - ./data/prometheus/data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+    restart: always
+    user: root
+    ports:
+      - 9090:9090
+    networks:
+      - go-lottery-network
+
+  grafana:
+    image: grafana/grafana:8.0.6
+    container_name: grafana
+    hostname: grafana
+    environment:
+      # 时区上海
+      TZ: Asia/Shanghai
+    restart: always
+    user: root
+    volumes:
+      - ./data/grafana/data:/var/lib/grafana
+    ports:
+      - "3001:3000"
     networks:
       - go-lottery-network
 

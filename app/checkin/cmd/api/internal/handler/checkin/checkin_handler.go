@@ -1,6 +1,7 @@
 package checkin
 
 import (
+	"Luckify/common/response"
 	"net/http"
 
 	"github.com/go-playground/validator/v10"

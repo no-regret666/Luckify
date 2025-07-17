@@ -1,3 +1,30 @@
-Name: comment
+Name: comment-api
 Host: 0.0.0.0
-Port: 8888
+Port: 8004
+ListenOn: 0.0.0.0:8004
+Mode: dev
+
+JwtAuth:
+  AccessSecret: XLr0sdu4rUP2U/EZEQly3oc3w8u4QPOYJtK3Gr96Fds=
+  AccessExpire: 604800
+
+UsercenterRpcConf:
+    Endpoints:
+      - 127.0.0.1:7000
+    NonBlock: true
+
+CommentRpcConf:
+  Endpoints:
+    - 127.0.0.1:7004
+  NonBlock: true
+
+Telemetry:
+  Name: comment-api
+  Endpoint: http://jaeger:14268/api/traces
+  Sampler: 1.0
+  Batcher: jaeger
+
+Prometheus:
+  Host: 0.0.0.0
+  Port: 3004
+  Path: /metrics
