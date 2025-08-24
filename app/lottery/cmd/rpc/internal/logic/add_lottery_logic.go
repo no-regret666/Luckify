@@ -5,9 +5,11 @@ import (
 	"Luckify/common/constants"
 	"Luckify/common/xerr"
 	"context"
+	"encoding/json"
 	"github.com/jinzhu/copier"
 	"github.com/pkg/errors"
 	"gorm.io/gorm"
+	"strconv"
 	"time"
 
 	"Luckify/app/lottery/cmd/rpc/internal/svc"
@@ -15,6 +17,16 @@ import (
 
 	"github.com/zeromicro/go-zero/core/logx"
 )
+
+type RedisPrize struct {
+	LotteryId        int64 `json:"lottery_id"`
+	Id               int64 `json:"id"`
+	Count            int64 `json:"count"`
+	Stock            int64 `json:"stock"`
+	Level            int64 `json:"level"`
+	LeftProbability  int64 `json:"left_probability"`
+	RightProbability int64 `json:"right_probability"`
+}
 
 type AddLotteryLogic struct {
 	ctx    context.Context
@@ -58,13 +70,31 @@ func (l *AddLotteryLogic) AddLottery(in *pb.AddLotteryReq) (*pb.AddLotteryResp, 
 		}
 		lotteryId = lottery.Id
 
+		prizePoolKey := constants.InstantLotteryPrizePoolRedisKey + strconv.Itoa(int(lotteryId))
 		for _, pbPrize := range in.Prizes {
 			prize := new(model.Prize)
 			_ = copier.Copy(prize, pbPrize)
 			prize.LotteryId = lotteryId
+			prize.Stock = prize.Count
+
 			err := l.svcCtx.PrizeModel.Insert(l.ctx, db, prize)
 			if err != nil {
 				return errors.Wrapf(model.ErrCreatePrize, "AddLotteryLogic Insert Prize error: %v", err)
+			}
+
+			redisPrize := RedisPrize{
+				LotteryId:        lotteryId,
+				Id:               prize.Id,
+				Count:            prize.Count,
+				Stock:            prize.Stock,
+				Level:            prize.Level,
+				LeftProbability:  int64(constants.ProbabilityMap[int(prize.Level)][0]),
+				RightProbability: int64(constants.ProbabilityMap[int(prize.Level)][1]),
+			}
+			jsonData, _ := json.Marshal(redisPrize)
+			err = l.svcCtx.RedisClient.HSet(l.ctx, prizePoolKey, strconv.FormatInt(redisPrize.Id, 10), string(jsonData)).Err()
+			if err != nil {
+				return errors.Wrapf(xerr.NewErrCode(xerr.REDIS_ERROR), "AddLotteryLogic Redis HSet Error: %v", err)
 			}
 		}
 

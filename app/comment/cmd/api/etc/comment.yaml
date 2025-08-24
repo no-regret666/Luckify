@@ -1,7 +1,6 @@
 Name: comment-api
 Host: 0.0.0.0
 Port: 8004
-ListenOn: 0.0.0.0:8004
 Mode: dev
 
 JwtAuth:

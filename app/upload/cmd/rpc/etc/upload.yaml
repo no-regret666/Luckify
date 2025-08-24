@@ -1,7 +1,6 @@
 Name: upload-rpc
 Host: 0.0.0.0
 Port: 7001
-ListenOn: 0.0.0.0:7001
 Mode: dev
 Cache:
   - Host: go-lottery-redis:6379

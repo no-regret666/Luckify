@@ -1,7 +1,6 @@
 Name: checkin-api
 Host: 0.0.0.0
 Port: 8005
-ListenOn: 0.0.0.0:8005
 Mode: dev
 
 JwtAuth:
@@ -23,8 +22,3 @@ Telemetry:
   Endpoint: http://jaeger:14268/api/traces
   Sampler: 1.0
   Batcher: jaeger
-
-Prometheus:
-  Host: 0.0.0.0
-  Port: 3002
-  Path: /metrics

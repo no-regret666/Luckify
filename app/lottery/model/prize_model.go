@@ -2,7 +2,6 @@ package model
 
 import (
 	"context"
-	"github.com/pkg/errors"
 	"github.com/zeromicro/go-zero/core/stores/cache"
 	"gorm.io/gorm"
 )
@@ -30,14 +29,18 @@ type (
 )
 
 func (c *customPrizeModel) DecrStock(ctx context.Context, prizeId int64) error {
-	err := c.ExecCtx(ctx, func(db *gorm.DB) error {
-		res := db.Model(&Prize{}).Where("id = ? and stock > 0", prizeId).Update("stock", gorm.Expr("stock - 1"))
-		if res.RowsAffected == 0 {
-			return errors.New("库存不足或奖品不存在")
+	return c.ExecCtx(ctx, func(db *gorm.DB) error {
+		tx := db.Model(&Prize{}).
+			Where("id = ? AND stock > 0", prizeId).
+			Update("stock", gorm.Expr("stock - 1"))
+		if tx.Error != nil {
+			return tx.Error
 		}
-		return res.Error
+		if tx.RowsAffected == 0 {
+			return ErrRowsAffectedZero
+		}
+		return nil
 	})
-	return err
 }
 
 func (c *customPrizeModel) FindFirstLevelByLotteryId(ctx context.Context, lotteryId int64) (*Prize, error) {

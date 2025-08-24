@@ -1,7 +1,6 @@
 Name: lottery-rpc
 Host: 0.0.0.0
 Port: 7002
-ListenOn: 0.0.0.0:7002
 Mode: dev
 
 Cache:
@@ -28,6 +27,12 @@ UsercenterRpcConf:
   Endpoints:
     - 127.0.0.1:7000
   NonBlock: true
+
+Kafka:
+  Host:
+    - go-lottery-kafka:9092
+  Topic: lottery-participant-dev
+  Group: lottery-participant-dev
 
 Prometheus:
   Host: 0.0.0.0

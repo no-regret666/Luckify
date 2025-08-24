@@ -1,6 +1,7 @@
 package main
 
 import (
+	"Luckify/app/lottery/cmd/rpc/internal/logic"
 	"Luckify/common/interceptor/rpcserver"
 	"flag"
 	"fmt"
@@ -36,6 +37,9 @@ func main() {
 	defer s.Stop()
 
 	s.AddUnaryInterceptors(rpcserver.LoggerInterceptor)
+
+	// 开启协程消费kafka消息
+	go logic.HandleInstantLotteryParticipationMessage(ctx)
 
 	fmt.Printf("Starting rpc server at %s...\n", c.ListenOn)
 	s.Start()

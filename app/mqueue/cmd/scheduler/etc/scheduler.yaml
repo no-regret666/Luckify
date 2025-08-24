@@ -1,7 +1,6 @@
 Name: mqueue-scheduler
 Host: 0.0.0.0
 Port: 3003
-ListenOn: 0.0.0.0:3003
 Mode: dev
 
 #链路追踪

@@ -16,9 +16,8 @@ func GenerateJWT(secretKey string, iat, seconds, userId int64) (string, error) {
 		"iat":                       iat,
 		constants.JwtClaimUserIdKey: userId,
 	}
-	token := jwt.New(jwt.SigningMethodHS256)
-	token.Claims = claims
 
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
 	//使用密钥签名令牌
 	return token.SignedString([]byte(secretKey))
 }
