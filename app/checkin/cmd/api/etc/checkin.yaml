@@ -1,6 +1,7 @@
 Name: checkin-api
 Host: 0.0.0.0
 Port: 8005
+ListenOn: 0.0.0.0:8005
 Mode: dev
 
 JwtAuth:

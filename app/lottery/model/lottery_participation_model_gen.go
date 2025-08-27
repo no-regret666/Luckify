@@ -40,11 +40,11 @@ type (
 	}
 
 	LotteryParticipation struct {
-		Id         int64     `gorm:"column:id;primary_key"` // 主键
-		LotteryId  int64     `gorm:"column:lottery_id"`     // 参与的抽奖的id
-		UserId     int64     `gorm:"column:user_id"`        // 用户id
-		IsWon      int64     `gorm:"column:is_won"`         // 是否中奖
-		PrizeId    int64     `gorm:"column:prize_id"`       // 中奖id
+		Id         int64     `gorm:"column:id;primary_key"` // ä¸»é”®
+		LotteryId  int64     `gorm:"column:lottery_id"`     // å‚ä¸Žçš„æŠ½å¥–çš„id
+		UserId     int64     `gorm:"column:user_id"`        // ç”¨æˆ·id
+		IsWon      int64     `gorm:"column:is_won"`         // æ˜¯å¦ä¸­å¥–
+		PrizeId    int64     `gorm:"column:prize_id"`       // ä¸­å¥–id
 		CreateTime time.Time `gorm:"column:create_time"`
 		UpdateTime time.Time `gorm:"column:update_time"`
 	}

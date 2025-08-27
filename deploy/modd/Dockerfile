@@ -1,20 +1,14 @@
-FROM golang:1.24
+FROM golang:1.23.4-alpine
 
 ENV GOPROXY=https://goproxy.cn,direct
-ENV GO111MODULE=on
 ENV TZ=Asia/Shanghai
 
-# 安装 tzdata，并设置时区
-RUN apt-get update && \
-    apt-get install -y tzdata && \
-    ln -snf /usr/share/zoneinfo/${TZ} /etc/localtime && \
-    echo "${TZ}" > /etc/timezone
-
-# 安装 modd 工具
+RUN apk update --no-cache && apk add --no-cache tzdata
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime &&  echo $TZ >/etc/timezone
 RUN go install github.com/cortesi/modd/cmd/modd@latest
 
-RUN chmod +x /go/data/server/*
 
+RUN chmod +x /go/data/server/*
 
 WORKDIR /go
 

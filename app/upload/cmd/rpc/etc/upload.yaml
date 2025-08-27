@@ -1,17 +1,18 @@
 Name: upload-rpc
 Host: 0.0.0.0
 Port: 7001
+ListenOn: 0.0.0.0:7001
 Mode: dev
 Cache:
   - Host: go-lottery-redis:6379
-    Pass: Wang
+    Pass: root
 
 MySQL:
-  Path: 127.0.0.1
+  Path: go-lottery-mysql
   Port: 3306
   Dbname: go-lottery-upload
   Username: root
-  Password: Wang
+  Password: root
   Config: charset=utf8mb4&parseTime=true&loc=Local
 
 JwtAuth:

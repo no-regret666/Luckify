@@ -1,6 +1,7 @@
 Name: lottery-api
 Host: 0.0.0.0
 Port: 8002
+ListenOn: 0.0.0.0:8002
 Mode: dev
 
 JwtAuth:

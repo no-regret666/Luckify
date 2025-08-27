@@ -1,6 +1,7 @@
 Name: lottery-rpc
 Host: 0.0.0.0
 Port: 7002
+ListenOn: 0.0.0.0:7002
 Mode: dev
 
 Cache:

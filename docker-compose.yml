@@ -1,5 +1,5 @@
 services:
-  nginx-gateway:
+  go-lottery-gateway:
     image: nginx:1.27.3
     container_name: go-lottery-gateway
     restart: always
@@ -7,9 +7,9 @@ services:
     environment:
       - TZ=Asia/Shanghai
     ports:
-      - 8888:8081
+      - 8889:8080
     volumes:
-      - ./deploy/nginx/conf.d:/etc/nginx/conf.d
+      - ./deploy/nginx/:/etc/nginx/conf.d
       - ./data/nginx/log:/var/log/nginx
     networks:
       - go-lottery-network
@@ -20,24 +20,24 @@ services:
     build:
       context: .
       dockerfile: deploy/modd/Dockerfile
-    dns:
-      - 8.8.8.8
-      - 223.5.5.5  # 阿里公共DNS
     container_name: go-lottery
     environment:
       - TZ=Asia/Shanghai
       - GOPROXY=https://goproxy.cn,direct
+      - GOSUMDB=off
+    dns:
+      - 223.5.5.5
+      - 114.114.114.114
     env_file:
       - ./.env
     working_dir: /go/go-lottery
     volumes:
       - .:/go/go-lottery
-      - ./data/go-lottery/go:/go/go-lottery/log
+      - ./data/go-lottery/log:/go/go-lottery/log
     privileged: true
     restart: always
     networks:
       - go-lottery-network
-
 
 networks:
   go-lottery-network:

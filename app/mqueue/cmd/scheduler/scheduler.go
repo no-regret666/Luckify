@@ -1,4 +1,4 @@
-package scheduler
+package main
 
 import (
 	"Luckify/app/mqueue/cmd/scheduler/internal/config"
@@ -18,6 +18,8 @@ func main() {
 	var c config.Config
 
 	conf.MustLoad(*configFile, &c)
+
+	logx.DisableStat()
 	if err := c.SetUp(); err != nil {
 		panic(err)
 	}

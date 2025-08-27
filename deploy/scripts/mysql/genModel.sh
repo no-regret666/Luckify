@@ -14,9 +14,9 @@ set -e
 
 # 数据库配置
 HOST='127.0.0.1'
-PORT="3306"
+PORT="33069"
 USERNAME='root'
-PASSWORD='Wang'
+PASSWORD='root'
 
 # 参数检查
 if [[ $# -lt 2 ]]; then

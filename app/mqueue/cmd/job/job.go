@@ -1,4 +1,4 @@
-package job
+package main
 
 import (
 	"Luckify/app/mqueue/cmd/job/internal/config"

@@ -14,7 +14,7 @@ type Config struct {
 		AccessSecret string
 		AccessExpire int64
 	}
-	UsercenterConf zrpc.RpcClientConf
+	UsercenterRpcConf zrpc.RpcClientConf
 	Kafka          struct {
 		Host  []string
 		Topic string

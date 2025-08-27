@@ -1,6 +1,7 @@
 Name: comment-rpc
 Host: 0.0.0.0
 Port: 7004
+ListenOn: 0.0.0.0:7004
 Mode: dev
 
 JwtAuth:

@@ -1,6 +1,7 @@
 Name: checkin-rpc
 Host: 0.0.0.0
 Port: 7005
+ListenOn: 0.0.0.0:7005
 Mode: dev
 
 Cache:

@@ -71,7 +71,7 @@ func NewServiceContext(c config.Config) *ServiceContext {
 		LotteryModel:              model.NewLotteryModel(db, c.Cache),
 		LotteryParticipationModel: model.NewLotteryParticipationModel(db, c.Cache),
 		PrizeModel:                model.NewPrizeModel(db, c.Cache),
-		UsercenterRpc:             usercenter.NewUsercenter(zrpc.MustNewClient(c.UsercenterConf)),
+		UsercenterRpc:             usercenter.NewUsercenter(zrpc.MustNewClient(c.UsercenterRpcConf)),
 		RedsyncClient:             redsync.New(pool),
 		RedisClient:               client,
 		Producer:                  newKafkaProducer(c),

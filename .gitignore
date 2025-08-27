@@ -2,3 +2,6 @@
 data
 APKINDEX.tar.gz
 frontend
+.dockerignore
+wechat
+log
