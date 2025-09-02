@@ -19,7 +19,7 @@ A：我按业务边界拆分服务，如用户中心、抽奖、签到、评论�
 
 Q：服务间通信为什么选择gRPC？有没有遇到什么坑?
 
-A：gRPC性能高、IDL强类型、支持多语言，适合服务间高校通信。遇到的坑主要有proto版本兼容、字段变更要注意向后兼容，以及gRPC的超时和错误处理需要统一封装。
+A：gRPC性能高、IDL强类型、支持多语言，适合服务间高效通信。遇到的坑主要有proto版本兼容、字段变更要注意向后兼容，以及gRPC的超时和错误处理需要统一封装。
 
 Q：Asynq是什么？你在项目中怎么使用它？
 
@@ -55,7 +55,7 @@ A：
 
 Q：即抽即中模式下如何防止超卖？分布式锁的实现细节是什么？
 
-A：用Redis分布式锁（redsync），每次抽奖先加锁，判断库存>0再原子扣减，操作完成后释放锁。这样即使高并发下也不会出现超卖。
+A：
 
 Q：数据库和缓存的读写策略是怎样的？如何避免缓存击穿和雪崩？
 
@@ -158,7 +158,44 @@ package main
 
 func main() {
   
-	....... 业务逻辑
+	....... 业务逻辑func f(s string) bool{
+    i,j := 0,len(s) - 1
+    for i < j {
+        if s[i] != s[j] {
+            return false
+        }
+        i++
+        j--
+    }
+    return true
+}
+func partition(s string) [][]string {
+    ans := [][]string{}
+    path := []string{}
+    n := len(s)
+    var dfs func(i,start int) // i：下一个要判断添不添加的逗号  start：子串开始的位置
+    dfs = func(i,start int) {
+        if i == n {
+            ans = append(ans,slices.Clone(path))
+            return
+        }
+
+        // 不分割
+        if i < n {
+            dfs(i + 1,start)
+        }
+
+        //分割
+        str := s[start:i + 1]
+        if f(str) {
+            path = append(path,str)
+            dfs(i + 1,i + 1)
+            path = path[:len(path) - 1]
+        }
+    }
+    dfs(0,0)
+    return ans
+}
 
 	//rpc log,grpc的全局拦截器
 	s.AddUnaryInterceptors(rpcserver.LoggerInterceptor)

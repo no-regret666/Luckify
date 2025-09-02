@@ -38,4 +38,3 @@ service checkin {
 	@handler UpdateSub
 	post /checkin/updateSub (UpdateSubReq) returns (UpdateSubResp)
 }
-

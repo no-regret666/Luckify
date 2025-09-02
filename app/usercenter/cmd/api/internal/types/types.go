@@ -134,20 +134,6 @@ type UserUpdateReq struct {
 type UserUpdateResp struct {
 }
 
-type WXMiniAuthReq struct {
-	Code          string `json:"code"`
-	IV            string `json:"iv"`
-	EncryptedData string `json:"encryptedData"`
-	Nickname      string `json:"nickname,optional"`
-	Avator        string `json:"avator,optional"`
-}
-
-type WXMiniAuthResp struct {
-	AccessToken  string `json:"accessToken"`
-	AccessExpire int64  `json:"accessExpire"`
-	RefreshAfter int64  `json:"refreshAfter"`
-}
-
 type SponsorDelReq struct {
 	Id int64 `json:"id" validate:"required"`
 }

@@ -4,6 +4,7 @@ import (
 	"Luckify/app/lottery/cmd/api/internal/config"
 	"Luckify/app/lottery/cmd/rpc/lottery"
 	"Luckify/app/usercenter/cmd/rpc/usercenter"
+
 	"github.com/zeromicro/go-zero/zrpc"
 )
 

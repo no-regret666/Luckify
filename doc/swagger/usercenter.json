@@ -5,7 +5,6 @@
     "description": "用户中心服务",
     "version": "v1"
   },
-  "host": "localhost:8000",
   "schemes": [
     "http",
     "https"
@@ -132,33 +131,6 @@
           {
             "apiKey": []
           }
-        ]
-      }
-    },
-    "/usercenter/v1/user/wxMiniAuth": {
-      "post": {
-        "summary": "微信登录注册",
-        "operationId": "wxMiniAuth",
-        "responses": {
-          "200": {
-            "description": "A successful response.",
-            "schema": {
-              "$ref": "#/definitions/WXMiniAuthResp"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/WXMiniAuthReq"
-            }
-          }
-        ],
-        "tags": [
-          "user"
         ]
       }
     },
@@ -795,54 +767,6 @@
     "UserUpdateResp": {
       "type": "object",
       "title": "UserUpdateResp"
-    },
-    "WXMiniAuthReq": {
-      "type": "object",
-      "properties": {
-        "code": {
-          "type": "string"
-        },
-        "iv": {
-          "type": "string"
-        },
-        "encryptedData": {
-          "type": "string"
-        },
-        "nickname": {
-          "type": "string"
-        },
-        "avator": {
-          "type": "string"
-        }
-      },
-      "title": "WXMiniAuthReq",
-      "required": [
-        "code",
-        "iv",
-        "encryptedData"
-      ]
-    },
-    "WXMiniAuthResp": {
-      "type": "object",
-      "properties": {
-        "accessToken": {
-          "type": "string"
-        },
-        "accessExpire": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "refreshAfter": {
-          "type": "integer",
-          "format": "int64"
-        }
-      },
-      "title": "WXMiniAuthResp",
-      "required": [
-        "accessToken",
-        "accessExpire",
-        "refreshAfter"
-      ]
     },
     "sponsorDelReq": {
       "type": "object",

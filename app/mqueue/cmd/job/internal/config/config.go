@@ -8,15 +8,7 @@ import (
 
 type Config struct {
 	service.ServiceConf
-	Redis      redis.RedisConf
-	WxMiniConf struct {
-		AppId     string
-		AppSecret string
-	}
-	WxMsgConf struct {
-		EventToken     string
-		EncodingAESKey string
-	}
+	Redis redis.RedisConf
 
 	LotteryRpcConf zrpc.RpcClientConf
 	CheckinRpcConf zrpc.RpcClientConf

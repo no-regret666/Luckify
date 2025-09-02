@@ -18,10 +18,6 @@ LotteryRpcConf:
     - 127.0.0.1:7002
   NonBlock: true
 
-WxMiniConf:
-  AppId: ${WEIXIN_APP_ID}
-  AppSecret: ${WEIXIN_APP_SECRET}
-
 Telemetry:
   Name: usercenter-api
   Endpoint: http://jaeger:14268/api/traces

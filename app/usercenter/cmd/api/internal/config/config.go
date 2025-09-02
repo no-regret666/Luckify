@@ -11,9 +11,5 @@ type Config struct {
 		AccessSecret string
 		AccessExpire int64
 	}
-	WxMiniConf struct {
-		AppId     string
-		AppSecret string
-	}
 	UsercenterRpcConf zrpc.RpcClientConf
 }

@@ -80,13 +80,13 @@ func (l *GetCheckinRecordByUserIdLogic) GetCheckinRecordByUserId(in *pb.GetCheck
 		_ = copier.Copy(checkinRecord, dbRecord)
 		_ = copier.Copy(integral, dbIntegral)
 
-		today := time.Now().UTC().Truncate(24 * time.Hour)
-		targetDay := checkinRecord.LastCheckinDate.Time.UTC().Truncate(24 * time.Hour)
+		today := time.Now().UTC().Truncate(24 * time.Hour) // 当前时间，今天0点
+		targetDay := checkinRecord.LastCheckinDate.Time.UTC().Truncate(24 * time.Hour) // 上一次签到日期0点
 
 		switch {
-		case targetDay.Equal(today):
+		case targetDay.Equal(today): // 今天签到过
 			return nil
-		case targetDay.Equal(today.Add(-24 * time.Hour)):
+		case targetDay.Equal(today.Add(-24 * time.Hour)): // 昨天签到过
 			if checkinRecord.ContinuousCheckinDays >= 7 {
 				checkinRecord.ContinuousCheckinDays = 0
 				checkinRecord.State = constants.StateNotCheckin
@@ -103,7 +103,7 @@ func (l *GetCheckinRecordByUserIdLogic) GetCheckinRecordByUserId(in *pb.GetCheck
 			}
 			return nil
 		default:
-			// 不需要一直更新数据库，只有有一个不是0时才更新
+			// 上次签到不是今天也不是昨天（断签了）
 			if checkinRecord.State != 0 || checkinRecord.ContinuousCheckinDays != 0 {
 				checkinRecord.ContinuousCheckinDays = 0
 				checkinRecord.State = 0
